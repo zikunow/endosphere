@@ -1,0 +1,17 @@
+{
+  "method": "Built-in image generation",
+  "prompts": [
+    {
+      "key": "hero",
+      "prompt": "Use case: photorealistic-natural. Create a premium photographic website hero for an Endospheres body massage beauty studio in Dresden, Germany. Horizontal landscape 3:2 composition. Adult female client about 35 in modest white spa wrap, relaxed shoulders, natural authentic skin texture, seated beside a white treatment bed in a tasteful contemporary wellness room, subtle soft blue-grey wall accents matching #507882, white cotton towels, soft diffuse daylight, quiet luxury editorial beauty photography, gentle relaxed smile, subject on right half with clean light wall on left, cropped upper torso, professional and approachable, 50mm natural perspective. This is an illustrative fictional model, no implied real staff or patient result. No text, logos, watermarks, fake certificates, laser device, needles, before-and-after comparison, exaggerated flawless retouching, or medical claims. Produce a standalone full-frame photo."
+    },
+    {
+      "key": "treatment",
+      "prompt": "Use case: photorealistic-natural. Standalone horizontal landscape 3:2 editorial photograph of a non-invasive Endospheres-style compressive microvibration body massage for a premium Dresden beauty studio. Close-up: an adult client's upper thigh discreetly covered with a white towel, professional practitioner's natural hands holding a sleek unbranded light-grey roller handpiece gently against exposed outer thigh skin. The treatment head has a compact roller surface consisting of several small spherical silicone massage balls, visibly contacting skin; this is a mechanical rolling massage, NOT a laser, suction cup, probe, razor or ultrasound wand. Show the handpiece and hands clearly, anatomically correct, plausible handheld massager scale. Calm soft blue-grey #507882 accents in blurred background, soft daylight, clean white cotton linen, realistic skin pores and folds, understated high-end beauty campaign, gentle clinical cleanliness, neutral professional scene, modest framing. Illustrative fictional demonstration, no before-after claims. No text, branding, watermark, certificates, dramatic skin change, surgical equipment or laser beams."
+    },
+    {
+      "key": "studio",
+      "prompt": "Use case: photorealistic-natural. Create a standalone horizontal landscape 3:2 architectural editorial photograph of a fictional boutique beauty treatment room suitable for Endospheres massage in Dresden, Germany. Refined contemporary room with one comfortable white upholstered treatment bed covered by fresh white linens, neatly rolled towels on a small cart, large window letting in soft daylight, gentle blue-grey wall #507882, light oak details, simple glass vase with a single leafy branch, understated high-end wellness atmosphere. Empty room without people. Unbranded small mobile wellness equipment cart, no recognizable patented device design required. Realistic architectural proportions, natural perspective, inviting uncluttered interior, premium beauty website photography. No text, no logos, no watermark, no certificates or awards, no medical operating theater, no pretence this is a real documented business location."
+    }
+  ]
+}
