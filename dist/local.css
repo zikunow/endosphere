@@ -135,3 +135,10 @@ img.local-hero-photo{object-fit:cover;object-position:65% center;border-radius:1
 .local-review-source,.local-review-note{color:#4e4e4e;font-size:13px}
 .local-review-note{margin:22px 0 0}
 @media(max-width:767px){.local-review-grid{grid-template-columns:1fr}.local-review-card{padding:24px}.local-review-summary strong{font-size:28px}}
+
+/* Sticky header on desktop, tablet and mobile; remove legacy negative overlap. */
+header.elementor-location-header{position:sticky;top:0;z-index:10000;isolation:isolate}
+.elementor-241 .elementor-element.elementor-element-129db56{--margin-bottom:0px;margin-bottom:0!important}
+.elementor-134 .elementor-element.elementor-element-ce46013{--padding-top:32px}
+html{scroll-padding-top:var(--local-header-offset,130px)}
+@media(max-width:767px){.elementor-134 .elementor-element.elementor-element-ce46013{--padding-top:28px}}

@@ -14,3 +14,16 @@ document.querySelectorAll('.uael-ba-container').forEach(box=>{const image=box.qu
 const dialog=document.createElement('dialog');dialog.className='local-lightbox';const large=document.createElement('img');const close=document.createElement('button');close.textContent='Schließen';close.type='button';dialog.append(large,close);document.body.append(dialog);close.addEventListener('click',()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});
 document.querySelectorAll('a[href]').forEach(a=>{if(/\.(jpe?g|png|webp)(\?.*)?$/i.test(a.getAttribute('href'))){a.addEventListener('click',e=>{e.preventDefault();large.src=a.getAttribute('href');large.alt=a.querySelector('img')?.alt||'Bild';dialog.showModal();});}});
 document.querySelectorAll('.ti-controls [role="button"]').forEach(button=>{const widget=button.closest('.ti-widget');const row=widget?.querySelector('.ti-reviews-container-wrapper');if(!row)return;const move=()=>row.scrollBy({left:(button.classList.contains('ti-next')?1:-1)*Math.max(295,row.clientWidth*.8),behavior:'smooth'});button.addEventListener('click',move);button.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();move();}});});
+
+// Keep anchor targets and the dropdown below the responsive sticky header.
+const stickyHeader=document.querySelector('header.elementor-location-header');
+if(stickyHeader){
+ const updateHeaderOffset=()=>{
+  const bottom=stickyHeader.getBoundingClientRect().bottom;
+  document.documentElement.style.setProperty('--local-header-offset',Math.ceil(stickyHeader.getBoundingClientRect().height+24)+'px');
+  stickyHeader.querySelectorAll('nav.local-open').forEach(nav=>nav.style.setProperty('--local-menu-top',Math.ceil(bottom+8)+'px'));
+ };
+ new ResizeObserver(updateHeaderOffset).observe(stickyHeader);
+ window.addEventListener('resize',updateHeaderOffset);
+ updateHeaderOffset();
+}
