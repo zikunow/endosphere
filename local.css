@@ -149,3 +149,9 @@ html{scroll-padding-top:var(--local-header-offset,130px)}
 .elementor-134 .elementor-element.elementor-element-157a0f5 img.local-hero-photo{display:block;width:100%;max-width:100%;height:auto}
 
 .elementor-134 .elementor-element.elementor-element-ce46013 > .e-con-inner{width:calc(100% - 32px);max-width:var(--container-max-width,1200px);box-sizing:border-box}
+
+/* Align desktop/tablet hero copy with the shared container's left edge. */
+@media(min-width:768px){
+ .elementor-134 .elementor-element.elementor-element-ca92874{--padding-left:0px}
+ .elementor-134 .elementor-element.elementor-element-e419011{--padding-left:0px}
+}
