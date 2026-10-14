@@ -142,3 +142,10 @@ header.elementor-location-header{position:sticky;top:0;z-index:10000;isolation:i
 .elementor-134 .elementor-element.elementor-element-ce46013{--padding-top:32px}
 html{scroll-padding-top:var(--local-header-offset,130px)}
 @media(max-width:767px){.elementor-134 .elementor-element.elementor-element-ce46013{--padding-top:28px}}
+
+/* Fit the hero photograph to its column, not the viewport width. */
+.elementor-134 .elementor-element.elementor-element-611f68c{min-width:0}
+.elementor-134 .elementor-element.elementor-element-054622d img.local-hero-photo,
+.elementor-134 .elementor-element.elementor-element-157a0f5 img.local-hero-photo{display:block;width:100%;max-width:100%;height:auto}
+
+.elementor-134 .elementor-element.elementor-element-ce46013 > .e-con-inner{width:calc(100% - 32px);max-width:var(--container-max-width,1200px);box-sizing:border-box}
