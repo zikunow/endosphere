@@ -1,4 +1,4 @@
-html{scroll-behavior:smooth;scroll-padding-top:100px}body{overflow-x:clip}.elementor-invisible{visibility:visible!important}img{max-width:100%}[role=tabpanel][hidden]{display:none!important}.elementor-menu-toggle.elementor-active+nav.elementor-nav-menu--dropdown{display:block!important;max-height:80vh!important;overflow:auto!important;transform:none!important}.elementor-menu-toggle+nav.elementor-nav-menu--dropdown:not(.local-open){display:none!important}.elementor-menu-toggle+nav.local-open{display:block!important;max-height:80vh!important;transform:none!important}.uael-ba-container{position:relative;overflow:hidden}.uael-ba-container img{display:block;width:100%;height:auto}.uael-ba-container .uael-before-img{position:absolute!important;inset:0;z-index:2;height:100%;object-fit:cover;clip-path:inset(0 50% 0 0)}.local-compare{position:absolute;inset:0;width:100%;height:100%;z-index:4;opacity:0;cursor:ew-resize;margin:0}.local-divider{position:absolute;top:0;bottom:0;left:50%;width:3px;background:white;z-index:3;pointer-events:none}.local-divider:after{content:'↔';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#507882;color:white;border:2px solid white;border-radius:50%;padding:8px;font-size:24px}.local-lightbox{border:0;background:#fff;padding:12px;max-width:90vw;max-height:90vh;border-radius:8px}.local-lightbox::backdrop{background:#000b}.local-lightbox img{display:block;max-width:85vw;max-height:78vh;width:auto;height:auto}.local-lightbox button{display:block;margin:8px 0 0 auto;padding:8px 16px;color:white;background:#507882;border:0;cursor:pointer}.ti-reviews-container-wrapper{overflow-x:auto!important;scroll-snap-type:x mandatory}.ti-review-item{scroll-snap-align:start}a:focus-visible,button:focus-visible,[role=button]:focus-visible,input:focus-visible{outline:3px solid #507882;outline-offset:4px}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}@media(max-width:767px){html{scroll-padding-top:70px}.local-lightbox{max-width:95vw}.e-contact-buttons{max-width:100vw}}
+html{scroll-behavior:smooth;scroll-padding-top:100px}body{overflow-x:clip}.elementor-invisible{visibility:visible!important}img{max-width:100%}[role=tabpanel][hidden]{display:none!important}.elementor-menu-toggle.elementor-active+nav.elementor-nav-menu--dropdown{display:block!important;max-height:80vh!important;overflow:auto!important;transform:none!important}.elementor-menu-toggle+nav.elementor-nav-menu--dropdown:not(.local-open){display:none!important}.elementor-menu-toggle+nav.local-open{display:block!important;max-height:80vh!important;transform:none!important}.uael-ba-container{position:relative;overflow:hidden}.uael-ba-container img{display:block;width:100%;height:auto}.uael-ba-container .uael-before-img{position:absolute!important;inset:0;z-index:2;height:100%;object-fit:cover;clip-path:inset(0 50% 0 0)}.local-compare{position:absolute;inset:0;width:100%;height:100%;z-index:4;opacity:0;cursor:ew-resize;margin:0}.local-divider{position:absolute;top:0;bottom:0;left:50%;width:3px;background:white;z-index:3;pointer-events:none}.local-divider:after{content:'↔';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#007bc7;color:white;border:2px solid white;border-radius:50%;padding:8px;font-size:24px}.local-lightbox{border:0;background:#fff;padding:12px;max-width:90vw;max-height:90vh;border-radius:8px}.local-lightbox::backdrop{background:#000b}.local-lightbox img{display:block;max-width:85vw;max-height:78vh;width:auto;height:auto}.local-lightbox button{display:block;margin:8px 0 0 auto;padding:8px 16px;color:white;background:#007bc7;border:0;cursor:pointer}.ti-reviews-container-wrapper{overflow-x:auto!important;scroll-snap-type:x mandatory}.ti-review-item{scroll-snap-align:start}a:focus-visible,button:focus-visible,[role=button]:focus-visible,input:focus-visible{outline:3px solid #007bc7;outline-offset:4px}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}@media(max-width:767px){html{scroll-padding-top:70px}.local-lightbox{max-width:95vw}.e-contact-buttons{max-width:100vw}}
 .ti-widget{white-space:normal!important}.ti-reviews-container-wrapper{display:flex!important;gap:20px;transform:none!important;justify-content:flex-start!important}.ti-review-item{flex:0 0 calc(33.333% - 14px)!important;min-width:275px;max-width:400px}.ti-next,.ti-prev{cursor:pointer}@media(max-width:767px){.ti-review-item{flex-basis:85%!important}}
 
 /* Beauty typography: expressive headings, clear body copy. */
@@ -20,7 +20,7 @@ img.local-hero-photo{object-fit:cover;object-position:65% center;border-radius:1
 .elementor-134 .elementor-element.elementor-element-ce46013:not(.elementor-motion-effects-element-type-background),
 .elementor-134 .elementor-element.elementor-element-ce46013 > .elementor-motion-effects-container > .elementor-motion-effects-layer {
   background-image: none !important;
-  background-color: #e1eff0;
+  background-color: #f7f2ef;
 }
 .elementor-134 .elementor-element.elementor-element-ce46013::before {
   background-image: none !important;
@@ -64,26 +64,26 @@ img.local-hero-photo{object-fit:cover;object-position:65% center;border-radius:1
 .elementor-134 .elementor-element.elementor-element-53362a8 .elementor-button:hover,
 .elementor-134 .elementor-element.elementor-element-53362a8 .elementor-button:focus-visible {
   background-color: #fff;
-  color: #507882;
+  color: #007bc7;
   border-color: #fff;
 }
 
 /* Hero booking button: keep a visible outline on hover and keyboard focus. */
 .elementor-134 .elementor-element.elementor-element-0877b59 .elementor-button {
-  border: 1px solid #507882;
-  background-color: #507882;
+  border: 1px solid #007bc7;
+  background-color: #007bc7;
   color: #fff;
 }
 .elementor-134 .elementor-element.elementor-element-0877b59 .elementor-button:hover,
 .elementor-134 .elementor-element.elementor-element-0877b59 .elementor-button:focus {
-  border: 1px solid #507882;
+  border: 1px solid #007bc7;
   background-color: transparent;
-  color: #507882;
+  color: #007bc7;
 }
 
 /* Real portrait treatment video with native playback controls. */
 .local-video-widget{width:100%}
-.local-treatment-video{display:block;width:100%;height:auto;max-height:85vh;aspect-ratio:9/16;object-fit:contain;background:#e1eff0;border-radius:18px}
+.local-treatment-video{display:block;width:100%;height:auto;max-height:85vh;aspect-ratio:9/16;object-fit:contain;background:#f7f2ef;border-radius:18px}
 
 /* Selected Endo Spa identity. */
 .elementor-241 .elementor-element.elementor-element-b630918 img.local-brand-logo{width:130px;max-width:100%;height:auto;display:block}
@@ -113,3 +113,10 @@ img.local-hero-photo{object-fit:cover;object-position:65% center;border-radius:1
  .elementor-241 .elementor-element.elementor-element-8cd81af{--width:85px;flex-basis:85px;width:85px}
  .elementor-241 .elementor-element.elementor-element-b630918 img.local-brand-logo{width:85px}
 }
+
+/* Palette adapted from the official Endospheres site. */
+.elementor-kit-251{--e-global-color-d49ac81:#00a2e0;--e-global-color-332724a:#f7f2ef;--e-global-color-cfa1f76:#eff4f7;--e-global-color-1b8e8a0:#eff4f7;--e-global-color-bb890b8:#e3d3cc;--e-global-color-primary:#4e4e4e;--e-global-color-secondary:#171717}
+.elementor-134 .elementor-element.elementor-element-08f8d22,
+.elementor-134 .elementor-element.elementor-element-bbcf594{background-color:#007bc7}
+
+@media(max-width:1024px){.elementor-241 .elementor-element.elementor-element-f666b0b nav.elementor-nav-menu--dropdown{position:fixed!important;left:12px!important;right:12px!important;top:var(--local-menu-top,90px)!important;width:auto!important;margin-top:0!important}}

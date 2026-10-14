@@ -2,7 +2,7 @@
 document.querySelectorAll('.elementor-menu-toggle').forEach(toggle=>{
  const nav=toggle.parentElement.querySelector('nav.elementor-nav-menu--dropdown');
  if(!nav)return;
- const set=open=>{toggle.classList.toggle('elementor-active',open);toggle.setAttribute('aria-expanded',String(open));nav.classList.toggle('local-open',open);nav.setAttribute('aria-hidden',String(!open));nav.querySelectorAll('a').forEach(a=>a.tabIndex=open?0:-1);};
+ const set=open=>{if(open)nav.style.setProperty('--local-menu-top',Math.max(8,toggle.closest('header').getBoundingClientRect().bottom+8)+'px');toggle.classList.toggle('elementor-active',open);toggle.setAttribute('aria-expanded',String(open));nav.classList.toggle('local-open',open);nav.setAttribute('aria-hidden',String(!open));nav.querySelectorAll('a').forEach(a=>a.tabIndex=open?0:-1);};
  set(false);toggle.addEventListener('click',()=>set(toggle.getAttribute('aria-expanded')!=='true'));
  toggle.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle.click();}if(e.key==='Escape')set(false);});
  nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>set(false)));
