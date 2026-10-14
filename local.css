@@ -86,9 +86,9 @@ img.local-hero-photo{object-fit:cover;object-position:65% center;border-radius:1
 .local-treatment-video{display:block;width:100%;height:auto;max-height:85vh;aspect-ratio:9/16;object-fit:contain;background:#e1eff0;border-radius:18px}
 
 /* Selected Endo Spa identity. */
-.elementor-241 .elementor-element.elementor-element-b630918 img.local-brand-logo{width:100px;max-width:100%;height:auto;display:block}
-.elementor-247 .elementor-element.elementor-element-d6815ea img.local-brand-logo{width:110px;max-width:100%;height:auto;display:block}
-@media(max-width:767px){.elementor-241 .elementor-element.elementor-element-b630918 img.local-brand-logo{width:76px}}
+.elementor-241 .elementor-element.elementor-element-b630918 img.local-brand-logo{width:130px;max-width:100%;height:auto;display:block}
+.elementor-247 .elementor-element.elementor-element-d6815ea img.local-brand-logo{width:150px;max-width:100%;height:auto;display:block}
+@media(max-width:767px){.elementor-241 .elementor-element.elementor-element-b630918 img.local-brand-logo{width:100px}}
 
 /* Keep the mobile dropdown inside the viewport, anchored to the menu button. */
 @media(max-width:1024px){
