@@ -120,3 +120,18 @@ img.local-hero-photo{object-fit:cover;object-position:65% center;border-radius:1
 .elementor-134 .elementor-element.elementor-element-bbcf594{background-color:#007bc7}
 
 @media(max-width:1024px){.elementor-241 .elementor-element.elementor-element-f666b0b nav.elementor-nav-menu--dropdown{position:fixed!important;left:12px!important;right:12px!important;top:var(--local-menu-top,90px)!important;width:auto!important;margin-top:0!important}}
+
+/* Verified Google Maps review excerpts. */
+.local-google-reviews{width:100%;color:#171717}
+.local-review-summary{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:28px;flex-wrap:wrap}
+.local-review-summary strong{font-size:32px;font-family:Manrope,Arial,sans-serif}
+.local-review-summary strong span,.local-review-stars{color:#007bc7;font-size:19px;letter-spacing:3px}
+.local-review-summary p{margin:6px 0 0}
+.local-review-summary a{color:#007bc7;text-decoration:underline;text-underline-offset:4px}
+.local-review-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.local-review-card{background:#fff;border:1px solid #e3d3cc;border-radius:18px;padding:28px;display:flex;flex-direction:column}
+.local-review-card blockquote{font-family:"Cormorant Garamond",Georgia,serif;font-size:27px;line-height:1.3;margin:22px 0 28px;border:0;padding:0;flex:1}
+.local-review-card .local-review-author{font-weight:600;margin:0 0 6px}
+.local-review-source,.local-review-note{color:#4e4e4e;font-size:13px}
+.local-review-note{margin:22px 0 0}
+@media(max-width:767px){.local-review-grid{grid-template-columns:1fr}.local-review-card{padding:24px}.local-review-summary strong{font-size:28px}}
