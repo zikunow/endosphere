@@ -100,3 +100,16 @@ img.local-hero-photo{object-fit:cover;object-position:65% center;border-radius:1
  }
  .elementor-241 .elementor-element.elementor-element-f666b0b nav.elementor-nav-menu--dropdown .elementor-item{white-space:normal;padding:15px 20px}
 }
+
+/* Reserve enough space for the supplied logo instead of the inherited 5% column. */
+.elementor-241 .elementor-element.elementor-element-8cd81af{--width:130px;flex:0 0 130px;width:130px}
+.elementor-241 .elementor-element.elementor-element-b630918{width:100%;padding:0}
+.elementor-241 .elementor-element.elementor-element-b630918 img.local-brand-logo{width:130px;max-width:100%;height:auto}
+@media(max-width:1024px){
+ .elementor-241 .elementor-element.elementor-element-8cd81af{--width:100px;flex-basis:100px;width:100px}
+ .elementor-241 .elementor-element.elementor-element-b630918 img.local-brand-logo{width:100px}
+}
+@media(max-width:400px){
+ .elementor-241 .elementor-element.elementor-element-8cd81af{--width:85px;flex-basis:85px;width:85px}
+ .elementor-241 .elementor-element.elementor-element-b630918 img.local-brand-logo{width:85px}
+}
