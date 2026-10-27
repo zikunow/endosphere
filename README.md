@@ -1,56 +1,105 @@
-# Endosphères in Dresden — lokale Website-Vorschau
+# Endo-SPA Dresden — статический сайт
 
-Entpacken Sie den Ordner und öffnen Sie `index.html`. WordPress und zusätzliche Installationen sind nicht erforderlich. Bilder, Schriften und Symbole sind lokal gespeichert.
+Сайт студии Endospheres в Дрездене. Проект использует обычные HTML, CSS и JavaScript, без WordPress, админки и сборки. Шрифты, изображения и видео хранятся локально.
 
-Alternativ im Ordner einen lokalen Server starten:
+## Репозиторий и две версии
+
+Репозиторий: https://github.com/zikunow/endosphere
+
+- `main` — прежний опубликованный вариант. GitHub Pages публикует сайт из корня этой ветки: https://zikunow.github.io/endosphere/
+- `client-texts-redesign` — новый вариант с текстами клиентки, переработанной структурой, ценами, FAQ, контактами и картой. Ветка: https://github.com/zikunow/endosphere/tree/client-texts-redesign
+
+Вторая ветка сама по себе не создаёт второй публичный сайт GitHub Pages. Изменения в ней не обновляют опубликованный вариант из `main`.
+
+## Порядок работы
+
+1. Новые изменения сначала делать локально в `client-texts-redesign`.
+2. Проверять внешний вид на компьютере и мобильных размерах, отступы, выравнивание, меню, кнопки и раскрывающиеся блоки.
+3. После изменений давать владельцу ссылку на локальную версию для просмотра.
+4. Коммиты, загрузку на GitHub, слияние в `main` и публикацию выполнять по просьбе владельца. Перед публикацией согласовать конкретную версию.
+5. Не использовать Sites и не загружать туда фотографии: владелец выбрал GitHub Pages.
+
+## Локальный просмотр
+
+Из папки проекта запустить:
 
 ```sh
-python3 -m http.server 8000
+python -m http.server 8001
 ```
 
-Anschließend http://localhost:8000 öffnen.
+Открыть http://127.0.0.1:8001/ . Ссылка работает, пока сервер запущен на этом компьютере. Если порт занят существующим сервером проекта, использовать его либо выбрать свободный порт и сообщить актуальную ссылку.
 
-## Inhalt
+## Текущий вариант client-texts-redesign
 
-Die Startseite wurde auf Deutsch für ein Endosphères-Angebot in Dresden neu getextet. Die vorhandenen Symbole, Farben und das Layout bleiben erhalten; die Behandlungsfotos wurden durch neue passende Motive ersetzt. Die Navigation, die Preisregister, die Bildansicht und der Vergleichsschieber funktionieren weiterhin.
+- Главный экран с реальной фотографией, кнопкой «Termin buchen» и окном консультации через WhatsApp.
+- Разделы Das Studio, Ihre Anliegen, Endospheres с описанием процедур для тела и лица, Forschung & Studien.
+- Цены Endospheres и Endospheres Evolution в переключаемых вкладках, противопоказания под ценами.
+- Три выдержки из реальных отзывов Google Maps со ссылкой на источник. Автоматическая загрузка отзывов и слайдер Trustindex пока не подключены.
+- FAQ с закрытыми по умолчанию вопросами: ответ раскрывается при нажатии.
+- Контакты, адрес Schillerplatz 7, 01309 Dresden, WhatsApp +49 176 70262438 и встроенная карта Google Maps.
+- Фиксируемая при прокрутке шапка, мобильное меню и подразделы методики.
+- Актуальный логотип Endo-SPA, голубые акценты и светлый фон. Шрифты: Cormorant Garamond для заголовков, Manrope для основного текста.
 
-## Vor der Veröffentlichung ergänzen
+## Контент и ограничения
 
-- Tatsächlicher Studioname und Name der Inhaberin.
-- Anschrift in Dresden, E-Mail-Adresse, Telefonnummer und soziale Profile.
-- Tatsächlich angebotene Körperzonen, Behandlungsumfänge und Preise.
-- Echte, zur Veröffentlichung freigegebene Kundenstimmen.
-- Eigenes Impressum und eigene Datenschutzerklärung.
+- Все тексты интерфейса сайта должны оставаться на немецком.
+- Использовать сведения и материалы, предоставленные клиенткой; не выдумывать отзывы, квалификации, опыт, скидки и гарантированные результаты.
+- Неизвестные сведения оставлять явно обозначенными заглушками. Часы работы, e-mail и ссылка Facebook пока требуют уточнения.
+- Реальные цены перенесены из предоставленных клиенткой прайс-листов. Не пересчитывать и не добавлять рекламные проценты скидок без согласования.
+- Медицинские и исследовательские утверждения проверять по первичным источникам. Не добавлять обещаний излечения, гарантированного снижения веса или постоянного результата. Индивидуальная пригодность процедуры требует оценки специалиста.
+- Реальные фото и видео клиентки уже используются. В проекте также могут оставаться прежние иллюстрации ИИ и неиспользуемые исходные файлы. Иллюстрации ИИ не являются доказательством результатов и не должны выдаваться за реальные снимки студии, оборудования или клиентки.
+- Место для фотографий «до/после» оставлено пустым до получения реальных материалов. Не генерировать изображения результатов.
+- Кнопки записи сейчас ведут в WhatsApp; отдельная система онлайн-записи не подключена.
+- Полноценные Impressum и Datenschutz ещё необходимо подготовить. Отдельные страницы и автоматический перевод не реализованы.
 
-Unbekannte Angaben sind ausdrücklich als Platzhalter oder „auf Anfrage“ gekennzeichnet. Es werden keine Qualifikationen, Rabatte, garantierten Ergebnisse oder Kundenbewertungen erfunden. Kontakt-, Karten- und Rechtstextlinks führen in dieser lokalen Vorschau zum Kontaktbereich; sie müssen vor der Veröffentlichung ergänzt werden.
+## Файлы
 
-## Bilder
+- `index.html` — структура страницы и немецкие тексты.
+- `style.css` — исходные стили экспортированного макета.
+- `local.css` — актуальные стили, адаптивная вёрстка и исправления.
+- `fonts.css` — локальные шрифты; лицензии находятся в `assets/`.
+- `local.js` — меню, вкладки цен, окно консультации и другие взаимодействия.
+- `assets/` — изображения, видео, шрифты и иконки сайта.
+- `fotos/` — дополнительные изображения, материалы логотипа и прежние промпты генерации.
+- `dist/` — сохранённая копия сайта от прежнего процесса размещения. Пока она остаётся в проекте, синхронизировать изменённые HTML/CSS/JS и используемые новые ресурсы с корнем. GitHub Pages использует корень `main`.
+- `.openai/hosting.json` — оставшаяся конфигурация прежнего размещения; наличие файла не подтверждает активную публикацию в Sites.
 
-Drei neue KI-generierte Symbolbilder wurden in die Website integriert: Beauty-Motiv, apparative Massage und beispielhafter Behandlungsraum. Die alten Laser- und Hydra-Fotos wurden ersetzt; die fremden Zertifikatsabbildungen und die Unterschrift wurden entfernt. Der frühere Vorher-Nachher-Vergleich ist jetzt ein einzelnes illustratives Behandlungsfoto. Es werden keine erfundenen Behandlungsergebnisse gezeigt.
+Исходные реальные материалы находятся также в соседней папке `../fotos_echt/`; она не входит в этот репозиторий. Для сайта использовать подготовленные файлы из `assets/`.
 
-Die Motive sind keine dokumentierten Aufnahmen des Studios oder des tatsächlich eingesetzten Geräts. Vor der Veröffentlichung sollten passende echte Studio- und Geräteaufnahmen eingesetzt werden. Die übernommenen Logos, Icons und Körperillustrationen sind unverändert; dafür sind die entsprechenden Nutzungsrechte erforderlich.
+## Источники
 
-Die drei Fotos liegen zusätzlich als JPEG in `fotos/`. Dort finden Sie auch die verwendeten Prompts und Hinweise zur integrierten Bildgenerierung.
+- Официальный сайт производителя: https://www.endospheres.com/de/
+- Отзывы студии Google Maps: https://maps.app.goo.gl/kPX5DaT5pSCehg9X8
 
-## Schriftgestaltung
+Перед публикацией проверить актуальность контактов, цен, разрешений на материалы, отзывов и правовых страниц.
 
-- Cormorant Garamond: Überschriften und hervorgehobene Behandlungstitel.
-- Manrope: Fließtext, Navigation und Bedienelemente.
+## Локальный вариант desktop-structure-refinement (27.10.2026)
 
-Die Schriftdateien sind lokal eingebunden und funktionieren ohne Internet. Die zugehörigen SIL Open Font Licenses liegen im Ordner `assets`.
+Рабочая ветка `desktop-structure-refinement` создана от `client-texts-redesign`.
+Изменения пока локальные, без коммита и публикации. Предыдущие описания выше относятся к исходной ветке.
 
-## Dateien
+- Новый порядок: первый экран → Anliegen → методика (исследования внутри раскрывающегося блока) → студия → этапы и видео → будущая галерея → отзывы → цены и противопоказания → FAQ → контакты.
+- Компактная шапка, единые прямые кнопки «Termin per WhatsApp anfragen», ссылка на цены с первого экрана, одна плавающая кнопка WhatsApp. Промежуточное окно консультации удалено.
+- Списки Anliegen и подробности методики раскрываются по желанию. Все 26 прежних ответов FAQ сохранены: 8 основных, ещё 18 в трёх тематических группах.
+- Цены и реальные отзывы сохранены. Технические отличия Evolution и персональная биография специалиста не добавлены: нужны подтверждённые сведения клиентки.
+- Десктопные отступы, композиция, карточки и футер приведены к общей сетке. Подробная responsive-доработка остаётся отдельным этапом.
+- Будущий Google Ads учтён в понятном первом экране, доступности цен и прямом обращении. Теги рекламы, аналитика и отдельная рекламная оптимизация не добавлялись.
 
-- `index.html`: Seitenstruktur und Texte.
-- `fonts.css`: lokale Schriftdefinitionen.
-- `style.css`: vorhandene Gestaltung.
-- `local.css`: lokale Anpassungen und interaktive Elemente.
-- `local.js`: Menü, Preisregister, Bildansicht und Vergleichsschieber.
-- `assets/`: unveränderte Bilder, Symbole und Schriftdateien.
+### Подключение ожидаемых фотографий
 
-## Textgrundlage
+Пользователь сообщил, что реальные фото «до/после» и фотографии всех трёх этапов имеются; передача файлов ожидается следующим шагом.
 
-Die sachliche Beschreibung der Methode orientiert sich an den Herstellerinformationen zur kompressiven Mikrovibration:
-https://www.endospheres.com/us/beauty-tips/what-is-compressive-microvibration-a-guide-for-wellness-professionals/
+Новый файл `media.js` подключается перед `local.js`. Он содержит только конфигурацию:
+- `steps.consultation` — первый шаг;
+- `steps.treatment` — второй шаг;
+- `steps.aftercare` — третий шаг;
+- `results` — массив пар «до/после».
 
-Die Seite macht keine Heil-, Gewichtsverlust- oder dauerhaften Ergebnisversprechen. Individuelle Eignung und tatsächlicher Leistungsumfang sind vom Studio zu bestätigen.
+Для каждого снимка этапа указать `{ src: 'assets/name.webp', alt: 'Немецкое описание' }`.
+Для галереи указать объект с полями `title`, `caption`, `before: { src, alt }`, `after: { src, alt }`.
+Пример схемы приведён в комментарии `media.js`; имена файлов использовать латиницей.
+
+Пустые записи и пары с незагрузившимся снимком не отображаются. До подключения файлов галерея и фотослоты не занимают места. Галерея поддерживает парные изображения, увеличение в диалоге, листание, стрелки клавиатуры, Escape и возврат фокуса. Фотографии результатов показываются целиком (`object-fit: contain`); фотографии этапов имеют рамку 4:3, кадрирование уточнить после получения снимков.
+
+После добавления фотографий синхронизировать `media.js`, `index.html`, `local.css`, `local.js` и новые ресурсы с `dist/`.
+Перед публикацией по-прежнему требуется заполнить часы, e-mail и правовые страницы; не менять существующие заглушки на выдуманные данные.
