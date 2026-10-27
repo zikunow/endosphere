@@ -184,3 +184,271 @@ html{scroll-padding-top:var(--local-header-offset,130px)}
 
 .elementor-241 .elementor-element.elementor-element-129db56{--padding-left:0px!important;--padding-right:0px!important;padding-inline:0!important}
 .elementor-241 > .e-parent > .e-con-inner{width:calc(100% - 2 * var(--site-gutter))!important;max-width:var(--site-content-width)!important}
+
+/* Consultation dialog for the new hero CTA. */
+.local-consultation{box-sizing:border-box;width:min(540px,calc(100vw - 32px));max-height:calc(100dvh - 40px);overflow:auto;border:1px solid #e3d3cc;border-radius:18px;padding:44px 32px 32px;background:#f7f2ef;color:#171717}
+.local-consultation::backdrop{background:rgb(0 0 0 / .45)}
+.local-consultation-close{position:absolute;top:10px;right:12px;width:36px;height:36px;border:0;background:transparent!important;color:#171717!important;font-size:28px;cursor:pointer}
+.local-consultation-label{font-size:12px;letter-spacing:.12em;color:#007bc7}
+.local-consultation h2{font-family:"Cormorant Garamond",Georgia,serif;font-size:36px;line-height:1.15;margin:18px 0 28px}
+.local-consultation-link{display:inline-block;background:#007bc7;color:#fff;padding:15px 24px;border:1px solid #007bc7;border-radius:4px;text-decoration:none}
+.local-consultation-link:hover{background:transparent;color:#007bc7}
+@media(max-width:767px){.local-consultation{padding:40px 24px 24px}.local-consultation h2{font-size:30px}}
+
+/* Balanced hierarchy for the longer client-supplied hero copy. */
+.elementor-134 .elementor-element.elementor-element-ca92874{align-items:center;--align-items:center;--padding-top:0px;--padding-bottom:0px}
+.elementor-134 .elementor-element.elementor-element-e419011{--padding-top:24px;--padding-bottom:28px;--padding-right:0px;--gap:0px}
+.elementor-134 .elementor-element.elementor-element-cb27d14 h1.elementor-heading-title{font-size:clamp(36px,3.3vw,48px)!important;line-height:1.08!important;letter-spacing:-.025em!important;margin:0}
+.local-hero-title-main{display:block}
+.local-hero-title-detail{display:block;font-size:.68em;line-height:1.25;letter-spacing:-.01em;font-weight:500;margin-top:18px}
+.elementor-134 .elementor-element.elementor-element-8b66b94 p{font-size:12px;letter-spacing:.12em;margin:0 0 22px}
+.elementor-134 .elementor-element.elementor-element-b71cbc0 p{font-size:15px;line-height:1.7;max-width:48ch;margin:24px 0 28px}
+@media(max-width:767px){
+ .elementor-134 .elementor-element.elementor-element-cb27d14 h1.elementor-heading-title{font-size:36px!important}
+ .elementor-134 .elementor-element.elementor-element-e419011{--padding-top:8px;--padding-bottom:24px}
+ .local-hero-title-detail{font-size:.7em;margin-top:14px}
+ .elementor-134 .elementor-element.elementor-element-b71cbc0 p{font-size:14px;margin:20px 0 24px}
+ .elementor-134 .elementor-element.elementor-element-8b66b94 p{font-size:11px;margin-bottom:18px}
+}
+
+/* Client-supplied studio introduction and a full-width benefits row. */
+.elementor-134 .local-studio-section{padding-block:80px}
+.elementor-134 .local-studio-inner{display:flex;flex-direction:column;gap:48px}
+.local-studio-intro{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(32px,5vw,80px);align-items:center;width:100%}
+.local-studio-image{max-width:390px;width:100%}
+.local-studio-image img{display:block;width:100%;height:auto;border-radius:18px}
+.local-studio-copy{max-width:640px}
+.elementor .local-section-label{font-family:Manrope,Arial,sans-serif;font-size:12px;letter-spacing:.13em;color:#007bc7;margin:0 0 20px}
+.local-studio-copy h2{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(34px,3.4vw,46px);font-weight:600;line-height:1.12;letter-spacing:-.02em;margin:0 0 26px;max-width:20ch}
+.local-studio-copy p:not(.local-section-label){font-size:15px;line-height:1.8;color:#4e4e4e;margin:0 0 18px}
+.local-studio-benefits{width:100%;padding-top:36px;border-top:1px solid #e3d3cc}
+.local-studio-benefits h3{font-family:"Cormorant Garamond",Georgia,serif;font-size:30px;font-weight:600;margin:0 0 26px}
+.local-studio-benefits ul{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:24px;list-style:none;margin:0;padding:0}
+.local-studio-benefits li{display:flex;flex-direction:column;gap:14px;font-size:14px;line-height:1.6;color:#171717}
+.local-studio-benefits svg{width:30px;height:30px;stroke:#007bc7;stroke-width:1.5;flex:none}
+@media(min-width:768px) and (max-width:1024px){.local-studio-benefits ul{grid-template-columns:repeat(3,minmax(0,1fr))}.local-studio-intro{grid-template-columns:1fr 1fr}}
+@media(max-width:767px){
+ .elementor-134 .local-studio-section{padding-block:48px}
+ .local-studio-intro{grid-template-columns:1fr;gap:28px}
+ .local-studio-copy{order:-1}.local-studio-copy h2{font-size:34px}
+ .local-studio-image{max-width:340px;margin-inline:auto}
+ .elementor-134 .local-studio-inner{gap:32px}
+ .local-studio-benefits{padding-top:28px}.local-studio-benefits ul{grid-template-columns:1fr;gap:20px}
+ .local-studio-benefits li{flex-direction:row;align-items:flex-start;gap:14px}
+ .local-studio-benefits svg{width:26px;height:26px}
+}
+
+/* Concerns and treatment sequence supplied by the studio. */
+.elementor-134 .local-concerns,.elementor-134 .local-treatment-steps{--padding-top:72px;--padding-bottom:72px}
+.elementor-134 .local-concerns > .e-con-inner,.elementor-134 .local-treatment-steps > .e-con-inner{display:flex;flex-direction:column;gap:40px}
+.local-concerns{background:#f7f2ef}
+.local-concerns-heading{max-width:780px}
+.local-concerns h2,.local-treatment-steps h2{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(32px,3.3vw,44px);font-weight:600;line-height:1.15;margin:0 0 20px}
+.local-concerns-heading > p:last-child{font-size:15px;line-height:1.7;color:#4e4e4e;max-width:65ch;margin:0}
+.local-concerns-columns{display:grid;grid-template-columns:1fr 1fr;gap:48px;width:100%}
+.local-concerns-columns h3{font-family:"Cormorant Garamond",Georgia,serif;font-size:30px;margin:0 0 22px;color:#007bc7}
+.local-concerns-columns ul{list-style:none;margin:0;padding:0}
+.local-concerns-columns li{position:relative;padding:12px 0 12px 24px;border-bottom:1px solid #e3d3cc;font-size:14px;line-height:1.65;color:#333}
+.local-concerns-columns li::before{content:"";position:absolute;top:22px;left:0;width:6px;height:6px;border-radius:50%;background:#00a2e0}
+.local-concerns-media{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:stretch;width:100%}
+.local-results-placeholder{min-height:300px;border:1px dashed #b9b1ac;border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px;background:rgb(255 255 255 / .45);color:#74665f}
+.local-results-placeholder span{font-size:12px;letter-spacing:.16em}.local-results-placeholder p{font-family:"Cormorant Garamond",Georgia,serif;font-size:27px;margin:18px 0 0}
+.local-process-video{display:flex;justify-content:center}.local-process-video video{max-width:270px;max-height:480px}
+.local-treatment-steps{background:#eff4f7}.local-steps-heading{text-align:center;max-width:750px;margin-inline:auto}
+.local-step-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;list-style:none;margin:0;padding:0;width:100%}
+.local-step-grid li{padding:30px;border-radius:16px;background:#fff;border:1px solid #e3d3cc}
+.local-step-letter{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;background:#eff4f7;color:#007bc7;border-radius:50%;font-size:14px;font-weight:600}
+.local-step-grid h3{font-family:"Cormorant Garamond",Georgia,serif;font-size:27px;line-height:1.15;margin:22px 0 18px}
+.local-step-grid p{font-size:14px;line-height:1.8;color:#4e4e4e;margin:0}
+@media(max-width:767px){
+ .elementor-134 .local-concerns,.elementor-134 .local-treatment-steps{--padding-top:44px;--padding-bottom:44px}
+ .local-concerns-columns,.local-concerns-media,.local-step-grid{grid-template-columns:1fr;gap:28px}
+ .local-results-placeholder{min-height:230px}.local-step-grid li{padding:24px}
+ .local-concerns h2,.local-treatment-steps h2{font-size:34px}
+}
+
+/* Technology: real studio photographs, body/face details and treatment video. */
+.elementor-134 .local-technology{--padding-top:72px;--padding-bottom:72px;background:#fff}
+.elementor-134 .local-technology > .e-con-inner{display:flex;flex-direction:column;gap:44px}
+.local-tech-intro,.local-tech-effects{display:grid;grid-template-columns:1fr 1fr;gap:var(--site-column-gap);width:100%}
+.local-technology h2{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(34px,3.3vw,46px);font-weight:600;line-height:1.12;margin:0;max-width:20ch}
+.local-technology h3{font-family:"Cormorant Garamond",Georgia,serif;font-size:32px;line-height:1.15;font-weight:600;margin:0 0 22px}
+.local-technology h4{font-family:Manrope,Arial,sans-serif;font-size:15px;font-weight:600;margin:26px 0 16px}
+.local-technology p:not(.local-section-label){font-size:14px;line-height:1.8;color:#4e4e4e;margin:0 0 18px}
+.local-tech-photos{display:grid;grid-template-columns:1fr 1fr;gap:28px;width:100%}
+.local-tech-photos figure{margin:0;min-width:0}
+.local-tech-photos img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:18px}
+.local-tech-photos figcaption{font-size:12px;color:#4e4e4e;margin-top:12px}
+.local-tech-effects{padding-top:36px;border-top:1px solid #e3d3cc}
+.local-tech-effects ul{padding-left:20px;margin:0 0 24px}.local-tech-effects li{font-size:14px;line-height:1.7;margin-bottom:10px;padding-left:4px}.local-tech-effects li::marker{color:#00a2e0}
+.local-tech-process{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:48px;padding:36px;border-radius:18px;background:#f7f2ef}
+.local-tech-process video{width:100%;max-width:320px;max-height:560px;justify-self:center}
+.local-technology .local-tech-note{font-size:12px!important;margin:0!important}
+.local-concerns-media{grid-template-columns:1fr}
+@media(max-width:767px){.elementor-134 .local-technology{--padding-top:44px;--padding-bottom:44px}.local-tech-intro,.local-tech-effects,.local-tech-photos,.local-tech-process{grid-template-columns:1fr;gap:28px}.local-tech-process{padding:24px}.local-technology h2{font-size:34px}.local-technology h3{font-size:29px}.local-tech-photos img{aspect-ratio:auto}}
+
+/* Research section: sourced manufacturer context, without certification badges. */
+.elementor-134 .local-research{--padding-top:72px;--padding-bottom:72px;background:#eff4f7}
+.elementor-134 .local-research > .e-con-inner{display:flex;flex-direction:column;gap:34px}
+.local-research-heading{max-width:800px}.local-research h2{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(34px,3.3vw,44px);font-weight:600;line-height:1.15;margin:0;max-width:27ch}
+.local-research-columns{display:grid;grid-template-columns:1.1fr 1fr;gap:var(--site-column-gap);width:100%}
+.local-research p:not(.local-section-label){font-size:15px;line-height:1.8;color:#4e4e4e;margin:0 0 18px}
+.local-research-institutes{background:#fff;border:1px solid #e3d3cc;border-radius:18px;padding:30px}
+.local-research h3{font-family:"Cormorant Garamond",Georgia,serif;font-size:28px;font-weight:600;line-height:1.2;margin:0 0 18px}
+.local-research ul{list-style:none;margin:0 0 24px;padding:0}.local-research li{padding:16px 0;border-bottom:1px solid #e3d3cc}.local-research li strong{display:block;font-size:14px;font-weight:600;line-height:1.6}.local-research li span{display:block;font-size:13px;color:#4e4e4e;margin-top:5px}
+.local-research a{color:#007bc7;font-size:13px;line-height:1.7;text-decoration:underline;text-underline-offset:4px}
+@media(max-width:767px){.elementor-134 .local-research{--padding-top:44px;--padding-bottom:44px}.local-research-columns{grid-template-columns:1fr;gap:24px}.local-research-institutes{padding:24px}.local-research h2{font-size:34px}}
+
+/* Prices transcribed from the studio's supplied price lists. */
+.elementor-134 .local-prices{--padding-top:72px;--padding-bottom:72px;background:#eff4f7}
+.elementor-134 .local-prices > .e-con-inner{display:flex;flex-direction:column;gap:32px}
+.local-prices-heading{text-align:center;max-width:760px;margin-inline:auto}
+.local-prices h2{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(34px,3.3vw,44px);font-weight:600;line-height:1.15;margin:0}
+.local-price-tabs{display:flex;justify-content:center;gap:8px;padding:6px;background:#fff;border:1px solid #e3d3cc;border-radius:12px;align-self:center;max-width:100%}
+.elementor-kit-251 .local-price-tabs button{background:transparent;color:#007bc7;border:1px solid transparent;border-radius:8px;padding:13px 22px;font-family:Manrope,Arial,sans-serif;font-size:14px;line-height:1.4;cursor:pointer}
+.elementor-kit-251 .local-price-tabs button[aria-selected=true]{background:#007bc7;color:#fff;border-color:#007bc7}
+.elementor-kit-251 .local-price-tabs button:hover{background:#eff4f7;color:#007bc7}
+.local-prices [role=tabpanel]{width:100%}
+.local-price-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px}
+.local-price-card{background:#fff;border:1px solid #e3d3cc;border-radius:18px;padding:32px;min-width:0}
+.local-price-card h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;font-size:32px;margin:0 0 8px;line-height:1.2}
+.local-price-card .local-price-subtitle{font-size:13px;color:#4e4e4e;min-height:22px;margin:0 0 30px}
+.local-price-single strong{font-size:38px;font-weight:500;color:#007bc7;display:block;font-variant-numeric:tabular-nums}
+.local-price-single span{display:block;font-size:12px;color:#4e4e4e;margin-top:8px}
+.local-price-card h4{font-family:Manrope,Arial,sans-serif;font-size:13px;font-weight:600;margin:28px 0 8px}
+.local-price-card dl{margin:0}.local-price-card dl>div{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:16px 0;border-top:1px solid #e3d3cc}
+.local-price-card dt{font-size:14px;font-weight:400}.local-price-card dd{font-size:18px;color:#007bc7;font-weight:600;white-space:nowrap;margin:0;font-variant-numeric:tabular-nums}
+@media(max-width:767px){.elementor-134 .local-prices{--padding-top:44px;--padding-bottom:44px}.local-price-grid{grid-template-columns:1fr;gap:20px}.local-price-card{padding:26px}.elementor-kit-251 .local-price-tabs button{font-size:12px;padding:12px}.local-prices h2{font-size:34px}}
+
+/* Visible contraindications immediately below the price section. */
+.elementor-134 .local-contraindications{--padding-top:0px;--padding-bottom:64px;background:#eff4f7}
+.local-contraindications-card{display:grid;grid-template-columns:1fr 1fr;gap:40px;padding:32px;border:1px solid #e3d3cc;border-radius:16px;background:#f7f2ef;width:100%;box-sizing:border-box}
+.local-contraindications h2{font-family:"Cormorant Garamond",Georgia,serif;font-size:32px;line-height:1.15;margin:0 0 18px;font-weight:600}
+.local-contraindications p:not(.local-section-label){font-size:13px;line-height:1.8;color:#4e4e4e;margin:0;max-width:52ch}
+.local-contraindications ul{list-style:none;padding:0;margin:0}
+.local-contraindications li{position:relative;padding:9px 0 9px 20px;font-size:14px;line-height:1.7;color:#333}
+.local-contraindications li::before{content:"";position:absolute;left:0;top:19px;width:5px;height:5px;border-radius:50%;background:#007bc7}
+@media(max-width:767px){.local-contraindications-card{grid-template-columns:1fr;gap:20px;padding:24px}.elementor-134 .local-contraindications{--padding-bottom:44px}}
+
+/* Native, keyboard-accessible FAQ accordion; answers start collapsed. */
+.elementor-134 .local-faq{--padding-top:64px;--padding-bottom:72px;background:#f7f2ef}
+.elementor-134 .local-faq > .e-con-inner{display:flex;flex-direction:column;gap:32px}
+.local-faq-heading{max-width:720px}.local-faq h2{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(34px,3.3vw,44px);font-weight:600;line-height:1.15;margin:0}
+.local-faq-list{width:100%;border-top:1px solid #d8cbc4}
+.local-faq details{border-bottom:1px solid #d8cbc4}
+.local-faq summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:21px 0;font-family:Manrope,Arial,sans-serif;font-weight:500;font-size:15px;line-height:1.6;cursor:pointer;color:#171717}
+.local-faq summary::-webkit-details-marker{display:none}
+.local-faq summary::after{content:'+';font-size:24px;font-weight:400;color:#007bc7;flex:none;width:24px;text-align:center}
+.local-faq details[open] summary::after{content:'−'}
+.local-faq summary:focus-visible{outline:2px solid #007bc7;outline-offset:4px;border-radius:3px}
+.local-faq summary:hover{color:#007bc7}
+.local-faq-answer{max-width:85ch;padding:0 42px 24px 0}.local-faq-answer p{font-size:14px;line-height:1.85;color:#4e4e4e;margin:0}
+@media(max-width:767px){.elementor-134 .local-faq{--padding-top:44px;--padding-bottom:44px}.local-faq summary{font-size:14px;padding:18px 0;gap:16px}.local-faq h2{font-size:34px}.local-faq-answer{padding-right:0}}
+
+/* Final contact and booking section. */
+.elementor-134 .local-contact-booking{--padding-top:72px;--padding-bottom:72px;background:#fff}
+.elementor-134 .local-contact-booking > .e-con-inner{display:grid;grid-template-columns:1.2fr 1fr;gap:var(--site-column-gap);align-items:center}
+.local-contact-copy h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;font-size:clamp(34px,3.3vw,44px);line-height:1.15;margin:0 0 24px;max-width:25ch}
+.local-contact-copy > p:not(.local-section-label){font-size:15px;line-height:1.8;color:#4e4e4e;margin:0 0 28px;max-width:55ch}
+.local-booking-button{display:inline-block;background:#007bc7;color:#fff;padding:16px 26px;border:1px solid #007bc7;border-radius:4px;font-size:14px;text-decoration:none}
+.local-booking-button:hover{background:transparent;color:#007bc7}
+.local-contact-details{padding:32px;background:#f7f2ef;border:1px solid #e3d3cc;border-radius:18px}
+.local-contact-details dl{margin:0}.local-contact-details dl>div+div{margin-top:24px;padding-top:24px;border-top:1px solid #e3d3cc}
+.local-contact-details dt{font-size:12px;letter-spacing:.08em;color:#4e4e4e;margin-bottom:8px}
+.local-contact-details dd{margin:0;font-size:18px;line-height:1.6}.local-contact-details a{color:#007bc7;text-decoration:underline;text-underline-offset:4px}
+@media(max-width:767px){.elementor-134 .local-contact-booking{--padding-top:44px;--padding-bottom:44px}.elementor-134 .local-contact-booking > .e-con-inner{grid-template-columns:1fr;gap:28px}.local-contact-details{padding:24px}.local-contact-copy h2{font-size:34px}}
+
+/* Final layout pass: explicit section sizing instead of inherited Elementor variables. */
+.elementor-134 > section.e-parent{display:block;width:100%;padding:72px 0;box-sizing:border-box}
+.elementor-134 > section.e-parent > .e-con-inner{display:flex;flex-direction:column;align-items:stretch;width:calc(100% - 48px);max-width:1200px;margin-inline:auto;box-sizing:border-box;gap:36px}
+:root{--site-content-width:1200px;--site-gutter:24px;--site-column-gap:48px}
+.elementor-134 > .e-parent > .e-con-inner,.elementor-247 > .e-parent > .e-con-inner{width:calc(100% - 48px);max-width:1200px;margin-inline:auto}
+.elementor-134 > section.local-contraindications{padding:0 0 64px}
+.elementor-134 > section.local-contact-booking > .e-con-inner{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:40px}
+.local-contact-map{grid-column:1/-1;min-width:0;margin-top:8px}
+.local-map-heading{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:20px}
+.local-map-heading h3{font-family:"Cormorant Garamond",Georgia,serif;font-size:28px;line-height:1.2;margin:0 0 8px}
+.local-map-heading p{font-size:14px;color:#4e4e4e;margin:0}
+.local-map-heading a{font-size:13px;color:#007bc7;text-decoration:underline;text-underline-offset:4px}
+.local-contact-map iframe{display:block;width:100%;height:380px;border:1px solid #e3d3cc;border-radius:18px;background:#eff4f7}
+.local-studio-intro,.local-tech-intro,.local-tech-effects,.local-research-columns,.local-concerns-columns{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px}
+.local-studio-image{max-width:390px;margin-inline:auto}
+.local-tech-process{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.local-tech-text p:last-child,.local-research-columns>div>p:last-child,.local-studio-copy>p:last-child{margin-bottom:0}
+.local-step-grid,.local-price-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.local-step-grid li,.local-price-card{padding:28px}
+.local-faq-list{width:100%;max-width:none;margin-inline:0}.local-faq-heading{max-width:800px}
+.elementor-134 .elementor-element.elementor-element-08f8d22,.elementor-134 .elementor-element.elementor-element-bbcf594{--padding-top:56px;--padding-bottom:56px}
+.elementor-134 .elementor-element.elementor-element-7fee306,.elementor-134 .elementor-element.elementor-element-603fbc1{--padding-top:0px;--padding-bottom:0px}
+.elementor-134 .elementor-element.elementor-element-f90b87e{--padding-top:64px;--padding-bottom:64px}
+.elementor-134 .local-review-card blockquote{font-size:25px}
+@media(min-width:768px) and (max-width:1024px){
+ .local-step-grid{grid-template-columns:1fr}.local-step-grid li{display:grid;grid-template-columns:44px 1fr;column-gap:20px}.local-step-grid h3{margin:3px 0 16px}.local-step-grid p{grid-column:2}
+ .local-price-card{padding:20px}.local-price-card h3{font-size:28px}.local-price-card dl>div{flex-wrap:wrap}
+}
+@media(max-width:767px){
+ :root{--site-gutter:20px;--site-column-gap:28px}
+ .elementor-134 > section.e-parent{padding:44px 0}
+ .elementor-134 > section.e-parent > .e-con-inner,.elementor-134 > .e-parent > .e-con-inner,.elementor-247 > .e-parent > .e-con-inner{width:calc(100% - 40px);gap:28px}
+ .elementor-134 > section.local-contraindications{padding:0 0 44px}
+ .local-studio-intro,.local-tech-intro,.local-tech-effects,.local-research-columns,.local-concerns-columns,.local-tech-process,.local-step-grid,.local-price-grid{grid-template-columns:1fr;gap:28px}
+ .elementor-134 > section.local-contact-booking > .e-con-inner{grid-template-columns:1fr;gap:28px}
+ .local-map-heading{align-items:flex-start;flex-direction:column;gap:12px}.local-contact-map iframe{height:320px}
+ .local-studio-copy{order:0}.local-studio-intro{display:flex;flex-direction:column}.local-studio-image{order:1;max-width:300px}
+ .local-studio-benefits ul{grid-template-columns:1fr}
+ .local-step-grid li,.local-price-card{padding:24px}
+ .local-results-placeholder{min-height:180px}
+ .elementor-134 .elementor-element.elementor-element-08f8d22,.elementor-134 .elementor-element.elementor-element-bbcf594{--padding-top:40px;--padding-bottom:40px}
+}
+
+/* Keep custom CTA labels legible against their blue fill. */
+.elementor a.local-booking-button,.elementor a.local-consultation-link{color:#fff}
+.elementor a.local-booking-button:hover,.elementor a.local-consultation-link:hover{color:#007bc7}
+@media(max-width:767px){
+ .elementor-241 .elementor-element.elementor-element-e7fb5fa{padding:12px 10px}
+ .elementor-241 .elementor-element.elementor-element-162e6bc{display:grid;grid-template-columns:80px minmax(0,1fr) 40px;gap:8px;width:100%;align-items:center}
+ .elementor-241 .elementor-element.elementor-element-8cd81af{grid-column:1;grid-row:1;width:80px;--width:80px}
+ .elementor-241 .elementor-element.elementor-element-b630918 img.local-brand-logo{width:80px}
+ .elementor-241 .elementor-element.elementor-element-c733ca4{grid-column:3;grid-row:1;width:40px;--width:40px;margin:0;padding:0}
+ .elementor-241 .elementor-element.elementor-element-42d933b{grid-column:2;grid-row:1;display:flex;flex-direction:row;flex-wrap:nowrap;justify-content:flex-end;align-items:center;gap:6px;width:auto;--width:auto;padding:0;min-width:0}
+ .elementor-241 .elementor-element.elementor-element-42d933b .elementor-widget-button{width:auto;margin:0;flex:0 1 auto}
+ .elementor-241 .elementor-element.elementor-element-42d933b .elementor-button{padding:8px 9px;font-size:11px;white-space:nowrap}
+ .elementor-241 .elementor-element.elementor-element-42d933b .elementor-button-icon{display:none}
+ .elementor-241 .elementor-element.elementor-element-f666b0b{width:40px}
+ .elementor-241 .elementor-menu-toggle{padding:4px;--nav-menu-icon-size:28px}
+}
+
+/* Updated navigation structure, with accessible method submenu. */
+.local-method-menu{position:relative;margin:0}
+.local-method-menu summary{list-style:none;cursor:pointer;color:#171717;font:600 13px/1.5 Manrope,Arial,sans-serif;padding:16px 0;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.local-method-menu summary::-webkit-details-marker{display:none}
+.local-method-menu summary:focus-visible{outline:2px solid #007bc7;outline-offset:4px}
+.local-method-links{position:absolute;top:100%;left:0;min-width:230px;margin:0;padding:8px!important;list-style:none;background:#fff;border:1px solid #e3d3cc;border-radius:10px;box-shadow:0 12px 28px #00000012;z-index:10001}
+.local-method-links a{display:block;padding:12px 14px;color:#171717;font:400 13px/1.5 Manrope,Arial,sans-serif;white-space:normal;text-decoration:none;border-radius:6px}
+.local-method-links a:hover,.local-method-links a:focus-visible{background:#eff4f7;color:#007bc7}
+.elementor-241 .elementor-element.elementor-element-90e9595{display:none}
+.elementor-241 .elementor-element.elementor-element-0d12e69 .elementor-button-icon{display:none}
+@media(min-width:1025px){
+ .elementor-241 .elementor-element.elementor-element-162e6bc{display:grid;grid-template-columns:110px minmax(0,1fr) auto;gap:20px;align-items:center}
+ .elementor-241 .elementor-element.elementor-element-8cd81af{width:110px;--width:110px}
+ .elementor-241 .elementor-element.elementor-element-b630918 img.local-brand-logo{width:110px}
+ .elementor-241 .elementor-element.elementor-element-c733ca4{width:auto;--width:auto;min-width:0}
+ .elementor-241 .elementor-element.elementor-element-42d933b{width:auto;--width:auto;display:flex;flex-direction:row;flex-wrap:nowrap;gap:8px;align-items:center}
+ .elementor-241 .elementor-element.elementor-element-f666b0b .local-site-menu{display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:nowrap}
+ .elementor-241 .elementor-element.elementor-element-f666b0b .local-site-menu>li{margin:0!important;padding:0!important;border:0!important}
+ .elementor-241 .elementor-element.elementor-element-f666b0b .local-site-menu>li:after{display:none}
+ .elementor-241 .elementor-element.elementor-element-f666b0b .elementor-item{font-size:13px;white-space:nowrap;padding:16px 0}
+ .elementor-241 .elementor-element.elementor-element-42d933b .elementor-button{font-size:12px;padding:8px 12px;white-space:nowrap}
+}
+@media(max-width:1024px){
+ .elementor-241 nav.elementor-nav-menu--dropdown .local-method-menu summary{padding:15px 20px;font-size:14px;font-weight:500}
+ .elementor-241 nav.elementor-nav-menu--dropdown .local-method-links{position:static;min-width:0;box-shadow:none;border:0;border-radius:0;background:#eff4f7;padding:6px 12px!important}
+ .elementor-241 nav.elementor-nav-menu--dropdown .local-method-links a{padding:12px 14px;font-size:13px}
+}
+.elementor-247 .local-nav-child{font-size:12px!important;padding-block:5px!important;padding-left:12px!important}
+#koerperbehandlung,#gesichtsbehandlung{scroll-margin-top:var(--local-header-offset,120px)}
+
+.elementor-241 .local-method-menu[open] > .local-method-links{display:block!important}
+.elementor-241 .local-method-menu .local-method-links{position:absolute;top:100%;left:0;min-width:230px;transform:none;visibility:visible;opacity:1}
+@media(min-width:1025px){.elementor-241 .elementor-element.elementor-element-f666b0b .local-site-menu a.elementor-item{font-size:13px!important}}
+@media(max-width:1024px){.elementor-241 nav.elementor-nav-menu--dropdown .local-method-menu .local-method-links{position:static;min-width:0}}

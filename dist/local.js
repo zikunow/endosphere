@@ -27,3 +27,17 @@ if(stickyHeader){
  window.addEventListener('resize',updateHeaderOffset);
  updateHeaderOffset();
 }
+
+const consultationDialog=document.getElementById('consultation-dialog');
+if(consultationDialog){
+ document.querySelectorAll('[data-open-consultation]').forEach(link=>link.addEventListener('click',event=>{event.preventDefault();consultationDialog.showModal();}));
+ consultationDialog.querySelector('.local-consultation-close').addEventListener('click',()=>consultationDialog.close());
+ consultationDialog.addEventListener('click',event=>{if(event.target===consultationDialog){const rect=consultationDialog.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)consultationDialog.close();}});
+}
+
+// Close method submenus after navigation, outside click or Escape.
+document.querySelectorAll('.local-method-menu').forEach(menu=>{
+ menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{menu.open=false;}));
+ document.addEventListener('click',event=>{if(!menu.contains(event.target))menu.open=false;});
+ menu.addEventListener('keydown',event=>{if(event.key==='Escape'){menu.open=false;menu.querySelector('summary').focus();}});
+});
