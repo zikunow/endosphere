@@ -17,9 +17,10 @@ applySiteFont(savedFont);
 fontButtons.forEach(button => button.addEventListener('click', () => applySiteFont(button.dataset.fontChoice, true)));
 
 // Heading colour is independent of the font choice.
-const headingChoices = ['black', 'slate', 'petrol', 'terracotta'];
+const headingChoices = ['black', 'slate', 'petrol', 'plum'];
 const headingButtons = [...document.querySelectorAll('[data-heading-choice]')];
 function applyHeadingColor(choice, persist = false) {
+  if (choice === 'terracotta') choice = 'plum';
   if (!headingChoices.includes(choice)) choice = 'black';
   document.documentElement.dataset.headingColor = choice;
   headingButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.headingChoice === choice)));
