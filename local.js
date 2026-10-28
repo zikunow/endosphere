@@ -1,5 +1,37 @@
 'use strict';
 
+// Client font comparison; local storage is optional (e.g. private browsing).
+const fontChoices = ['open-sans', 'manrope', 'montserrat'];
+const fontButtons = [...document.querySelectorAll('[data-font-choice]')];
+function applySiteFont(choice, persist = false) {
+  if (!fontChoices.includes(choice)) choice = 'open-sans';
+  document.documentElement.dataset.siteFont = choice;
+  fontButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.fontChoice === choice)));
+  if (persist) {
+    try { localStorage.setItem('endo-spa-font', choice); } catch { /* The preview works without storage. */ }
+  }
+}
+let savedFont = 'open-sans';
+try { savedFont = localStorage.getItem('endo-spa-font') || savedFont; } catch { /* Use the default font. */ }
+applySiteFont(savedFont);
+fontButtons.forEach(button => button.addEventListener('click', () => applySiteFont(button.dataset.fontChoice, true)));
+
+// Heading colour is independent of the font choice.
+const headingChoices = ['black', 'slate', 'petrol', 'terracotta'];
+const headingButtons = [...document.querySelectorAll('[data-heading-choice]')];
+function applyHeadingColor(choice, persist = false) {
+  if (!headingChoices.includes(choice)) choice = 'black';
+  document.documentElement.dataset.headingColor = choice;
+  headingButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.headingChoice === choice)));
+  if (persist) {
+    try { localStorage.setItem('endo-spa-heading-color', choice); } catch { /* Switching works without storage. */ }
+  }
+}
+let savedHeadingColor = 'black';
+try { savedHeadingColor = localStorage.getItem('endo-spa-heading-color') || savedHeadingColor; } catch { /* Use black. */ }
+applyHeadingColor(savedHeadingColor);
+headingButtons.forEach(button => button.addEventListener('click', () => applyHeadingColor(button.dataset.headingChoice, true)));
+
 // One navigation for desktop and smaller windows.
 const header = document.querySelector('.local-header');
 const menuToggle = document.querySelector('.local-menu-toggle');

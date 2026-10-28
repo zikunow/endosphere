@@ -477,7 +477,7 @@ body.endo-site{margin:0;color:var(--endo-ink);background:#fff}
 .elementor .local-section-label{font-size:11px;letter-spacing:.13em;font-weight:600;margin:0 0 16px;color:#0077aa}
 .endo-site .local-text-link{display:inline-flex;align-items:center;gap:12px;font:500 13px/1.6 Manrope,Arial,sans-serif;color:#006da9;text-decoration:underline;text-underline-offset:5px}
 .endo-site .local-text-link:hover{color:#004b74}
-.elementor-134 > section.local-hero{padding:56px 0 60px;background:#f7f2ef}
+.elementor-134 > section.local-hero{padding:56px 0 60px;background:#edf4f8}
 .elementor-134 > section.local-hero > .e-con-inner{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
 .local-hero-copy{min-width:0;display:flex;flex-direction:column;align-items:flex-start;text-align:left}
 .local-hero-copy>h1,.local-hero-copy>p,.local-hero-copy>.local-hero-actions{margin-inline:0;padding-inline:0;align-self:flex-start;text-align:left}
@@ -492,7 +492,7 @@ body.endo-site{margin:0;color:var(--endo-ink);background:#fff}
 .elementor-134 > section.local-concerns{background:#fff;padding-bottom:72px}
 .local-concerns-heading{max-width:820px}
 .local-concerns-columns{gap:24px}
-.local-concerns-columns>div{background:#f7f2ef;border:1px solid var(--endo-line);border-radius:var(--endo-radius);padding:28px 32px;display:flex;flex-direction:column;align-items:stretch}
+.local-concerns-columns>div{--endo-line:#d5e2e9;background:#edf4f8;border:1px solid var(--endo-line);border-radius:var(--endo-radius);padding:28px 32px;display:flex;flex-direction:column;align-items:stretch}
 .local-concerns-columns h3{font-size:32px;margin:0 0 14px;color:#202727}
 .local-concerns-columns li{font-size:14px;padding-block:12px}
 .local-concerns-columns>.local-text-link{margin-top:20px}
@@ -670,3 +670,97 @@ body.endo-site{margin:0;color:var(--endo-ink);background:#fff}
 @media(min-width:768px){.local-faq-heading{align-self:start;position:sticky;top:var(--local-header-offset,110px)}}
 
 .local-research-compact>.local-research{background:transparent;padding-bottom:24px}
+
+/* Client comparison: three locally hosted sans-serif families, with real bold headings. */
+:root{--endo-font:'Open Sans'}
+:root[data-site-font="manrope"]{--endo-font:'Manrope'}
+:root[data-site-font="montserrat"]{--endo-font:'Montserrat'}
+html[data-site-font] body.endo-site,
+html[data-site-font] body.endo-site *{font-family:var(--endo-font),Arial,sans-serif!important}
+html[data-site-font] .endo-site :is(h1,h2,h3,h4){font-weight:700!important;line-height:1.25!important;letter-spacing:-.025em!important}
+html[data-site-font] .endo-site .local-hero h1{font-size:clamp(32px,3vw,44px)!important;line-height:1.17!important}
+html[data-site-font] .endo-site .local-hero-promise{font-size:24px;line-height:1.45;font-weight:500;letter-spacing:-.02em;max-width:34ch}
+html[data-site-font] .endo-site h2{font-size:clamp(28px,2.5vw,36px)!important}
+html[data-site-font] .endo-site h3{font-size:clamp(21px,1.8vw,26px)!important}
+html[data-site-font] .endo-site h4{font-size:14px!important;letter-spacing:0!important}
+html[data-site-font] .endo-site .local-disclosure-title{font-size:23px;font-weight:700;line-height:1.3}
+html[data-site-font] .endo-site .local-review-card blockquote{font-size:20px;line-height:1.5;font-weight:600;letter-spacing:-.015em}
+.local-step-grid h3{min-height:68px}
+.local-header-inner{gap:16px}
+.local-logo{flex-basis:90px}.local-logo img{width:90px}
+.local-navigation{gap:14px}
+.local-navigation a{font-size:12px}
+.local-header .local-booking-button{font-size:11px;padding:12px}
+.local-font-switcher{display:flex;flex-shrink:0;align-items:center;gap:3px;padding:4px;border:1px solid #d1e4ec;border-radius:9px;background:#f5f8fa}
+html[data-site-font] body.endo-site .local-font-switcher button{font:500 11px/1.5 Manrope,Arial,sans-serif!important;color:#43545b;padding:8px 7px;min-height:32px;border:1px solid transparent;border-radius:5px;background:transparent;white-space:nowrap;cursor:pointer;transition:background-color .15s,color .15s}
+html[data-site-font] body.endo-site .local-font-switcher button[data-font-choice="open-sans"]{font-family:'Open Sans',Arial,sans-serif!important}
+html[data-site-font] body.endo-site .local-font-switcher button[data-font-choice="montserrat"]{font-family:'Montserrat',Arial,sans-serif!important}
+html[data-site-font] body.endo-site .local-font-switcher button[aria-pressed="true"]{background:#007bc7;color:#fff;border-color:#007bc7}
+html[data-site-font] body.endo-site .local-font-switcher button:hover{background:#e1edf3;color:#006da9}
+html[data-site-font] body.endo-site .local-font-switcher button[aria-pressed="true"]:hover{background:#0067a7;color:#fff}
+@media(min-width:1101px) and (max-width:1250px){
+ .local-header-inner{gap:10px}
+ .local-navigation{gap:10px}
+ .local-navigation a{font-size:11px}
+ .local-header .local-booking-button{font-size:10px}
+}
+@media(max-width:1100px){
+ .local-header .local-booking-button{margin-left:auto}
+ .local-font-switcher{margin-right:auto}
+}
+@media(max-width:767px){
+ .local-header-inner{flex-wrap:wrap;gap:8px 12px;padding-block:10px}
+ .local-logo{flex:0 0 76px;order:0}.local-logo img{width:76px}
+ .local-font-switcher{order:1;justify-content:flex-end;flex:1 0 calc(100% - 88px);margin-right:0}
+ html[data-site-font] body.endo-site .local-font-switcher button{font-size:10px!important;flex:1;padding-inline:5px}
+ .local-header .local-booking-button{order:2;max-width:none;margin-left:0;margin-right:auto;font-size:11px}
+ .local-menu-toggle{order:3}
+ html[data-site-font] .endo-site .local-hero h1{font-size:clamp(27px,7.1vw,38px)!important;overflow-wrap:normal}
+ html[data-site-font] .endo-site .local-hero-promise{font-size:22px}
+ html[data-site-font] .endo-site h2{font-size:28px!important}
+ .local-step-grid h3{min-height:0}
+}
+
+.endo-site .local-menu-toggle{background:transparent;color:#202727;border-color:#d1e4ec}
+@media(max-width:767px){
+ .local-header-inner{display:grid;grid-template-columns:76px minmax(0,1fr) 40px}
+ .local-logo{grid-column:1;grid-row:1}
+ .local-font-switcher{grid-column:2 / 4;grid-row:1;min-width:0;box-sizing:border-box}
+ .local-header .local-booking-button{grid-column:1 / 3;grid-row:2;justify-self:start}
+ .local-menu-toggle{grid-column:3;grid-row:2}
+}
+
+/* Cool dividers within the concerns cards match their blue background. */
+.local-concerns-columns li{border-bottom-color:#d5e2e9}
+
+/* Three heading palettes, independent of the font comparison. */
+:root{--endo-heading-color:#171717}
+:root[data-heading-color="slate"]{--endo-heading-color:#344b60}
+:root[data-heading-color="petrol"]{--endo-heading-color:#225b61}
+:root[data-heading-color="terracotta"]{--endo-heading-color:#99562f}
+html[data-heading-color] .endo-site :is(h1,h2,h3,h4,.local-disclosure-title,.local-hero-promise){color:var(--endo-heading-color)!important}
+.local-contact-accent .local-contact-copy{--endo-heading-color:#fff}
+.local-header-inner{min-height:104px}
+.local-preview-controls{display:flex;flex-direction:column;gap:4px;flex-shrink:0}
+.local-preview-controls .local-font-switcher{margin:0}
+.local-color-switcher{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:3px;padding:3px;border:1px solid #d1e4ec;border-radius:8px;background:#f5f8fa}
+html[data-site-font] body.endo-site .local-color-switcher button{display:flex;align-items:center;justify-content:center;gap:5px;font:500 10px/1.5 Manrope,Arial,sans-serif!important;min-height:28px;padding:4px 6px;border:1px solid transparent;border-radius:5px;background:transparent;color:#43545b;white-space:nowrap;cursor:pointer}
+html[data-site-font] body.endo-site .local-color-switcher button[aria-pressed="true"]{background:white;border-color:#8199a8;box-shadow:0 1px 3px #17333f12;color:#202727}
+html[data-site-font] body.endo-site .local-color-switcher button:hover{background:#e1edf3}
+.local-color-dot{display:inline-block;width:10px;height:10px;border-radius:50%;flex:none;background:#171717}
+[data-heading-choice="slate"] .local-color-dot{background:#344b60}
+[data-heading-choice="petrol"] .local-color-dot{background:#225b61}
+[data-heading-choice="terracotta"] .local-color-dot{background:#99562f}
+@media(max-width:767px){
+ .local-preview-controls{grid-column:2 / 4;grid-row:1;min-width:0}
+ .local-color-switcher{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .local-preview-controls .local-font-switcher{flex:none;justify-content:stretch;grid-column:auto;grid-row:auto}
+ .local-header-inner{min-height:0}
+ html[data-site-font] body.endo-site .local-color-switcher button{padding-inline:3px}
+}
+.local-preview-controls .local-font-switcher{order:0}
+
+/* Keep the confirmed e-mail readable inside contact cards and the footer. */
+.local-contact-details a[href^="mailto:"]{font-size:15px;overflow-wrap:anywhere}
+.local-footer-email a{overflow-wrap:anywhere}
+.local-preview-controls .local-font-switcher button{flex:1}
