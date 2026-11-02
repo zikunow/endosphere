@@ -764,3 +764,11 @@ html[data-site-font] body.endo-site .local-color-switcher button:hover{backgroun
 .local-contact-details a[href^="mailto:"]{font-size:15px;overflow-wrap:anywhere}
 .local-footer-email a{overflow-wrap:anywhere}
 .local-preview-controls .local-font-switcher button{flex:1}
+
+/* Approved appearance: Montserrat and Schiefer; compact header without preview controls. */
+.local-header-inner{min-height:84px}
+@media(max-width:767px){
+ .local-header-inner{display:flex;flex-wrap:wrap;min-height:72px}
+ .local-header .local-booking-button{margin-left:auto;margin-right:0;max-width:180px}
+ .local-menu-toggle{flex-shrink:0}
+}
