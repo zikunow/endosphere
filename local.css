@@ -921,3 +921,48 @@ html[data-site-font] .endo-site #forschung .local-research-institutes h3{font-si
  .local-hero-certificates{gap:10px;padding-inline:4px}
  .local-hero-certificates a{padding:5px}
 }
+
+/* Method introduction: continuous text column with the supplied illustration. */
+.local-tech-intro.local-tech-intro-illustrated{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:64px;align-items:start}
+.local-tech-intro-copy{min-width:0}
+.local-tech-intro-copy .local-tech-text{margin-top:24px}
+.local-tech-illustration{margin:0;width:min(100%,380px);justify-self:center}
+.local-tech-illustration a{display:block;border:1px solid #d5e2e9;border-radius:14px;overflow:hidden;background:#fff}
+.local-tech-illustration img{display:block;width:100%;height:auto;object-fit:contain}
+.local-tech-illustration a:focus-visible{outline:3px solid #006da9;outline-offset:4px}
+@media(max-width:767px){.local-tech-intro.local-tech-intro-illustrated{grid-template-columns:1fr;gap:28px}.local-tech-illustration{width:min(100%,330px)}}
+
+/* Permanently visible method explanation, balanced against the full illustration. */
+.local-tech-intro.local-tech-intro-illustrated{align-items:center;gap:48px}
+.local-tech-explanation{margin-top:24px;padding-top:22px;border-top:1px solid #d5e2e9}
+html[data-site-font] .endo-site .local-tech-explanation h3{font-size:18px!important;line-height:1.5!important;letter-spacing:0!important;margin:0 0 16px}
+.local-tech-explanation p{font-size:15px;line-height:1.8;margin:0 0 18px}
+.local-tech-explanation p:last-child{margin-bottom:0}
+.local-tech-intro-illustrated .local-tech-illustration{width:min(100%,420px);align-self:center}
+@media(max-width:767px){.local-tech-intro.local-tech-intro-illustrated{gap:28px}.local-tech-intro-illustrated .local-tech-illustration{width:min(100%,330px)}}
+
+/* Match the illustration frame to the complete text column, rather than centering it. */
+@media(min-width:768px){
+ .local-tech-intro.local-tech-intro-illustrated{align-items:stretch}
+ .local-tech-intro-illustrated .local-tech-illustration{position:relative;width:100%;min-height:0;align-self:stretch;justify-self:stretch}
+ .local-tech-illustration a{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;box-sizing:border-box}
+ .local-tech-illustration img{width:100%;height:100%;object-fit:contain}
+}
+.local-tech-intro-copy>.local-section-label{margin-top:0}
+.local-tech-intro-copy .local-tech-explanation>div>p:last-child{margin-bottom:0}
+
+/* Align the illustration with the heading, leaving the eyebrow above both columns. */
+.local-tech-intro.local-tech-intro-illustrated{row-gap:22px}
+.local-tech-intro-illustrated>.local-tech-eyebrow{grid-column:1 / -1;grid-row:1;margin:0}
+.local-tech-intro-illustrated>.local-tech-intro-copy{grid-column:1;grid-row:2}
+.local-tech-illustration a{border:0;background:transparent;border-radius:0}
+.local-tech-illustration img{border-radius:12px}
+@media(min-width:768px){
+ .local-tech-intro-illustrated>.local-tech-illustration{grid-column:2;grid-row:2}
+ .local-tech-illustration a{justify-content:flex-end}
+ .local-tech-illustration img{width:auto;max-width:100%;height:100%;object-fit:contain;object-position:right top}
+}
+@media(max-width:767px){
+ .local-tech-intro-illustrated>.local-tech-intro-copy{grid-column:1;grid-row:2}
+ .local-tech-intro-illustrated>.local-tech-illustration{grid-column:1;grid-row:3}
+}
