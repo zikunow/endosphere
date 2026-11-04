@@ -486,9 +486,10 @@ body.endo-site{margin:0;color:var(--endo-ink);background:#fff}
 .elementor .local-hero-promise{font-family:"Cormorant Garamond",Georgia,serif!important;font-size:29px;line-height:1.2;max-width:28ch;margin:16px 0 0;color:#414b4e}
 .elementor .local-hero-description{font-size:14px;line-height:1.8;max-width:51ch;margin:24px 0}
 .local-hero-actions{display:flex;flex-direction:column;align-items:flex-start;gap:16px}
-.local-hero-figure{margin:0}
-.local-hero-figure img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 60%;border-radius:var(--endo-radius)}
-.elementor .local-hero-address{font-size:12px;color:var(--endo-muted);margin:18px 0 0}
+.local-hero-figure{margin:0;width:min(100%,360px);justify-self:center}
+.local-hero-figure img{display:block;width:100%;height:auto;aspect-ratio:auto;object-fit:contain;border-radius:var(--endo-radius)}
+@media(max-width:767px){.local-hero-figure{width:min(100%,300px)}}
+.elementor .local-hero-address{font-size:12px;color:var(--endo-muted);margin:24px 0 0}
 .elementor-134 > section.local-concerns{background:#fff;padding-bottom:72px}
 .local-concerns-heading{max-width:820px}
 .local-concerns-columns{gap:24px}
@@ -772,3 +773,95 @@ html[data-site-font] body.endo-site .local-color-switcher button:hover{backgroun
  .local-header .local-booking-button{margin-left:auto;margin-right:0;max-width:180px}
  .local-menu-toggle{flex-shrink:0}
 }
+
+/* Direct directions from the hero address. */
+.local-hero-address a{display:inline-flex;flex-direction:column;gap:4px;padding-block:0;color:inherit;text-decoration:none}
+.local-hero-address .local-hero-route{color:#006da9;text-decoration:underline;text-underline-offset:3px}
+.local-hero-address a:hover{color:#004b74}
+.local-hero-address a:focus-visible{outline:2px solid #006da9;outline-offset:4px;border-radius:3px}
+
+/* Personal consultation below the concerns cards. */
+.local-concerns-cta{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:32px;margin-top:28px;padding:32px;background:#f5f8fa;border:1px solid #d5e2e9;border-radius:var(--endo-radius)}
+.local-concerns-cta-copy{min-width:0}
+.elementor .local-concerns-cta h3{margin:0 0 12px;max-width:36ch}
+.elementor .local-concerns-cta p{margin:0;max-width:72ch;font-size:14px;line-height:1.8}
+.local-concerns-cta>.local-booking-button{justify-self:start;text-align:center}
+@media(max-width:900px){.local-concerns-cta{grid-template-columns:1fr;gap:24px;padding:24px}}
+
+/* Client comparison: four blue hero backgrounds. */
+:root{--endo-hero-background:#cceaff}
+:root[data-hero-background="ice"]{--endo-hero-background:#e0f3ff}
+:root[data-hero-background="sky"]{--endo-hero-background:#cceaff}
+:root[data-hero-background="azure"]{--endo-hero-background:#b5dcfa}
+:root[data-hero-background="cornflower"]{--endo-hero-background:#9dc9f2}
+.elementor-134 > section.local-hero{background:var(--endo-hero-background)}
+.local-hero-backgrounds{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.local-hero-backgrounds button{display:inline-flex;align-items:center;gap:7px;padding:8px 10px;border:1px solid #6d8ba5;border-radius:6px;background:#ffffffb3;color:#243d52;font-size:11px;line-height:1.5;cursor:pointer}
+.local-hero-backgrounds button[aria-pressed="true"]{border-color:#006da9;background:#fff;box-shadow:0 0 0 1px #006da9}
+.local-hero-backgrounds button:hover{background:#fff}
+.local-hero-backgrounds button:focus-visible{outline:2px solid #006da9;outline-offset:3px}
+.local-hero-swatch{width:14px;height:14px;border-radius:50%;border:1px solid #6d8ba566;background:#e0f3ff;flex-shrink:0}
+[data-hero-background="sky"]>.local-hero-swatch{background:#cceaff}
+[data-hero-background="azure"]>.local-hero-swatch{background:#b5dcfa}
+[data-hero-background="cornflower"]>.local-hero-swatch{background:#9dc9f2}
+
+/* Three real studio photographs form a responsive collage. */
+.local-studio-gallery{margin-top:40px}
+.elementor .local-studio-gallery h3{margin:0 0 22px}
+.local-studio-collage{display:grid;grid-template-columns:minmax(0,1fr) 240px;grid-template-rows:repeat(2,minmax(0,1fr));gap:16px;height:480px}
+.local-studio-collage a{display:block;min-width:0;min-height:0;overflow:hidden;border-radius:var(--endo-radius);background:#f3eeea}
+.local-studio-collage img{display:block;width:100%;height:100%;object-fit:cover}
+.local-studio-collage-main{grid-column:1;grid-row:1 / 3}
+.local-studio-collage-main img{object-position:70% 50%}
+.local-studio-collage-interior{grid-column:2;grid-row:1}
+.local-studio-collage-interior img{object-position:50% 63%;transform:scale(1.45);transform-origin:100% 63%}
+.local-studio-collage-certificate{grid-column:2;grid-row:2}
+.local-studio-collage .local-studio-collage-certificate img{object-fit:cover}
+.local-studio-collage a:focus-visible{outline:3px solid #006da9;outline-offset:4px}
+@media(max-width:767px){
+ .local-studio-gallery{margin-top:28px}
+ .local-studio-collage{height:auto;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:12px}
+ .local-studio-collage-main{grid-column:1 / 3;grid-row:1;aspect-ratio:16/9}
+ .local-studio-collage-interior{grid-column:1;grid-row:2;aspect-ratio:1}
+ .local-studio-collage-certificate{grid-column:2;grid-row:2;aspect-ratio:1}
+}
+
+/* Three layouts for the six studio advantages. */
+.local-studio-benefits{margin-top:36px;border-color:#d5e2e9}
+.local-benefits-heading{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:24px}
+.elementor .local-benefits-heading h3{margin:0}
+.local-benefits-switcher{display:flex;flex-wrap:wrap;gap:4px;padding:4px;border:1px solid #cbdde8;border-radius:8px;background:#edf4f8}
+.local-benefits-switcher button{border:1px solid transparent;border-radius:5px;background:transparent;color:#344b60;font-size:12px;line-height:1.5;padding:8px 12px;cursor:pointer}
+.local-benefits-switcher button[aria-pressed="true"]{background:#fff;border-color:#87a5bb;box-shadow:0 1px 3px #17333f12}
+.local-benefits-switcher button:hover{background:#fff}
+.local-benefits-switcher button:focus-visible{outline:2px solid #006da9;outline-offset:2px}
+.local-studio-benefits[data-benefits-layout] ul{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;counter-reset:studio-advantage}
+.local-studio-benefits[data-benefits-layout] li{position:relative;box-sizing:border-box;min-width:0;font-size:14px;line-height:1.65}
+.local-studio-benefits[data-benefits-layout="cards"] li{flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:18px;padding:26px;background:#edf4f8;border:1px solid #d5e2e9;border-radius:var(--endo-radius)}
+.local-studio-benefits[data-benefits-layout="cards"] svg{width:32px;height:32px}
+.local-studio-benefits[data-benefits-layout="cards"] li span{font-weight:600}
+.local-studio-benefits[data-benefits-layout="compact"] ul{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px}
+.local-studio-benefits[data-benefits-layout="compact"] li{flex-direction:row;align-items:center;padding:22px 0;border-bottom:1px solid #d5e2e9;gap:16px}
+.local-studio-benefits[data-benefits-layout="numbered"] ul{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px}
+.local-studio-benefits[data-benefits-layout="numbered"] li{flex-direction:row;align-items:center;gap:20px;padding:26px 0;border-bottom:1px solid #d5e2e9;counter-increment:studio-advantage}
+.local-studio-benefits[data-benefits-layout="numbered"] svg{display:none}
+.local-studio-benefits[data-benefits-layout="numbered"] li::before{content:counter(studio-advantage,decimal-leading-zero);font-size:32px;font-weight:700;line-height:1;color:#0077aa;flex:0 0 46px}
+@media(max-width:900px){.local-studio-benefits[data-benefits-layout="cards"] ul{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){
+ .local-benefits-heading{align-items:flex-start;flex-direction:column;gap:18px}
+ .local-studio-benefits[data-benefits-layout] ul{grid-template-columns:1fr}
+ .local-studio-benefits[data-benefits-layout="cards"] li{flex-direction:row;align-items:center;padding:22px;gap:16px}
+}
+
+/* Agreed page order: alternate white and blue standalone sections. */
+.elementor.elementor-134 > section[data-section-tone="white"]{background:#fff}
+.elementor.elementor-134 > section[data-section-tone="blue"]{background:#e3f2fc}
+.local-benefits-section .local-studio-benefits{margin-top:0;padding-top:0;border-top:0}
+.elementor .local-benefits-heading h2{margin:0}
+.local-price-contraindications{padding-top:28px;border-top:1px solid #d5e2e9}
+.local-price-contraindications>.e-con-inner{width:100%;max-width:none;margin:0;padding:0}
+@media(min-width:1101px){.local-navigation{gap:10px}.local-navigation a{font-size:11px}.local-header-inner{gap:12px}}
+@media(min-width:1101px) and (max-width:1250px){.local-navigation{gap:7px}.local-navigation a{font-size:10px}.local-header .local-booking-button{max-width:155px;text-align:center}}
+
+.local-contact-booking[data-section-tone] .local-contact-phone a{color:#006da9}
+.local-contact-booking[data-section-tone] .local-contact-details{background:#fff;border-color:#d5e2e9}

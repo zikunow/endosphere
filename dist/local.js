@@ -1,5 +1,38 @@
 'use strict';
 
+// Local comparison of the hero background; font and heading colour stay fixed.
+const heroBackgroundChoices = ['ice', 'sky', 'azure', 'cornflower'];
+const heroBackgroundButtons = [...document.querySelectorAll('[data-hero-background]')];
+function applyHeroBackground(choice, persist = false) {
+  if (!heroBackgroundChoices.includes(choice)) choice = 'sky';
+  document.documentElement.dataset.heroBackground = choice;
+  heroBackgroundButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.heroBackground === choice)));
+  if (persist) {
+    try { localStorage.setItem('endo-spa-hero-background', choice); } catch { /* Comparison also works without storage. */ }
+  }
+}
+let savedHeroBackground = 'sky';
+try { savedHeroBackground = localStorage.getItem('endo-spa-hero-background') || savedHeroBackground; } catch { /* Use Himmelblau. */ }
+applyHeroBackground(savedHeroBackground);
+heroBackgroundButtons.forEach(button => button.addEventListener('click', () => applyHeroBackground(button.dataset.heroBackground, true)));
+
+// Compare the studio benefits without duplicating their content.
+const studioBenefits = document.getElementById('studio-benefits');
+const benefitsButtons = [...document.querySelectorAll('[data-benefits-choice]')];
+const benefitsLayouts = ['cards', 'compact', 'numbered'];
+function applyBenefitsLayout(choice, persist = false) {
+  if (!benefitsLayouts.includes(choice)) choice = 'cards';
+  if (studioBenefits) studioBenefits.dataset.benefitsLayout = choice;
+  benefitsButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.benefitsChoice === choice)));
+  if (persist) {
+    try { localStorage.setItem('endo-spa-benefits-layout', choice); } catch { /* Optional storage. */ }
+  }
+}
+let savedBenefitsLayout = 'cards';
+try { savedBenefitsLayout = localStorage.getItem('endo-spa-benefits-layout') || savedBenefitsLayout; } catch { /* Use cards. */ }
+applyBenefitsLayout(savedBenefitsLayout);
+benefitsButtons.forEach(button => button.addEventListener('click', () => applyBenefitsLayout(button.dataset.benefitsChoice, true)));
+
 // One navigation for desktop and smaller windows.
 const header = document.querySelector('.local-header');
 const menuToggle = document.querySelector('.local-menu-toggle');
