@@ -865,3 +865,59 @@ html[data-site-font] body.endo-site .local-color-switcher button:hover{backgroun
 
 .local-contact-booking[data-section-tone] .local-contact-phone a{color:#006da9}
 .local-contact-booking[data-section-tone] .local-contact-details{background:#fff;border-color:#d5e2e9}
+
+/* Research copy supplied by Alina, with a clear invitation to contact the studio. */
+.local-research .local-research-heading{max-width:850px}
+.elementor .local-research-heading h2{max-width:30ch}
+.elementor .local-research .local-research-lead{margin:20px 0 0;max-width:64ch;font-size:17px;line-height:1.8;color:#344b60}
+.local-research .local-research-columns{align-items:start}
+.local-research .local-research-copy p:last-child{margin-bottom:0}
+.local-research .local-research-institutes{background:#fff;border-color:#cbdde8}
+.local-research .local-research-institutes li{border-color:#d5e2e9}
+.local-research-cta{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:28px 32px;border:1px solid #cbdde8;border-radius:var(--endo-radius);background:#ffffffb3}
+.elementor .local-research-cta h3{margin:0 0 10px}
+.elementor .local-research-cta p{margin:0;font-size:14px}
+.local-research .local-research-cta>.local-booking-button{flex-shrink:0;color:#fff;font-size:13px;text-decoration:none;text-align:center}
+@media(max-width:900px){.local-research-cta{flex-direction:column;align-items:flex-start;padding:24px;gap:22px}}
+
+/* Keep the research institutions card in balance with the text column. */
+.local-research .local-research-columns{align-items:stretch}
+.local-research .local-research-institutes{padding:20px 24px}
+html[data-site-font] .endo-site #forschung .local-research-institutes h3{font-size:20px!important;line-height:1.3!important;margin:0 0 10px}
+.local-research .local-research-institutes>p{font-size:13px;line-height:1.5;margin:0 0 6px}
+.local-research .local-research-institutes ul{margin:0 0 12px}
+.local-research .local-research-institutes li{padding:8px 0}
+.local-research .local-research-institutes li strong{font-size:13px;line-height:1.5}
+.local-research .local-research-institutes li span{font-size:12px;line-height:1.5;margin-top:3px}
+.local-research .local-research-institutes>a{font-size:12px;line-height:1.5}
+
+/* Four arrangements of two photographs of the same genuine certificate. */
+.local-hero-figure[data-certificate-layout]{width:min(100%,440px);min-width:0}
+.local-hero-photo-stage{position:relative;padding:0 0 76px;isolation:isolate}
+.local-hero-figure .local-hero-portrait{width:min(100%,360px);height:auto;margin-inline:auto;object-fit:contain}
+.local-hero-certificates{position:absolute;left:0;right:0;bottom:12px;display:flex;align-items:center;justify-content:center;gap:14px;padding-inline:8px}
+.local-hero-certificates a{display:block;width:calc(50% - 7px);min-width:0;padding:7px;background:#fff;border:1px solid #d5e2e9;border-radius:8px;box-shadow:0 12px 28px #17333f29;box-sizing:border-box;overflow:hidden}
+.local-hero-figure .local-hero-certificates img{display:block;width:100%;height:auto;aspect-ratio:1.4;object-fit:contain;border-radius:2px;background:#faf9f6;filter:brightness(1.06) saturate(.92)}
+.local-hero-certificates a:focus-visible{outline:3px solid #006da9;outline-offset:4px}
+.local-hero-figure figcaption{margin-top:8px;text-align:center}
+.local-certificate-caption{font-size:11px;line-height:1.6;color:#344b60;text-decoration:underline;text-underline-offset:3px}
+.local-certificate-switcher{display:flex;flex-wrap:wrap;justify-content:center;gap:5px;margin-top:14px}
+.local-certificate-switcher button{border:1px solid #7896ad;border-radius:6px;background:#ffffffb3;color:#243d52;font-size:11px;line-height:1.5;padding:7px 9px;cursor:pointer}
+.local-certificate-switcher button[aria-pressed="true"]{background:#fff;border-color:#006da9;box-shadow:0 0 0 1px #006da9}
+.local-certificate-switcher button:hover{background:#fff}
+.local-certificate-switcher button:focus-visible{outline:2px solid #006da9;outline-offset:3px}
+[data-certificate-layout="staggered"] .local-hero-certificates a:first-child{transform:translateY(-16px) rotate(-5deg)}
+[data-certificate-layout="staggered"] .local-hero-certificates a:last-child{transform:translateY(8px) rotate(5deg)}
+[data-certificate-layout="side"] .local-hero-portrait{width:calc(100% - 80px);max-width:360px;margin-left:0;margin-right:auto}
+[data-certificate-layout="side"] .local-hero-certificates{left:auto;right:0;bottom:30px;width:150px;flex-direction:column;padding:0;gap:12px}
+[data-certificate-layout="side"] .local-hero-certificates a{width:100%}
+[data-certificate-layout="strip"] .local-hero-photo-stage{padding-bottom:0}
+[data-certificate-layout="strip"] .local-hero-certificates{position:relative;margin-top:-16px;bottom:auto}
+@media(max-width:767px){
+ .local-hero-figure[data-certificate-layout]{width:min(100%,360px)}
+ .local-hero-figure .local-hero-portrait{max-width:300px}
+ [data-certificate-layout="side"] .local-hero-certificates{width:125px}
+ [data-certificate-layout="side"] .local-hero-portrait{width:calc(100% - 65px)}
+ .local-hero-certificates{gap:10px;padding-inline:4px}
+ .local-hero-certificates a{padding:5px}
+}

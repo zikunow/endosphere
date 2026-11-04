@@ -33,6 +33,23 @@ try { savedBenefitsLayout = localStorage.getItem('endo-spa-benefits-layout') || 
 applyBenefitsLayout(savedBenefitsLayout);
 benefitsButtons.forEach(button => button.addEventListener('click', () => applyBenefitsLayout(button.dataset.benefitsChoice, true)));
 
+// Certificate photographs are genuine; the selector only changes their layout.
+const certificateFigure = document.querySelector('.local-hero-figure[data-certificate-layout]');
+const certificateButtons = [...document.querySelectorAll('[data-certificate-choice]')];
+const certificateLayouts = ['overlap', 'staggered', 'side', 'strip'];
+function applyCertificateLayout(choice, persist = false) {
+  if (!certificateLayouts.includes(choice)) choice = 'overlap';
+  if (certificateFigure) certificateFigure.dataset.certificateLayout = choice;
+  certificateButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.certificateChoice === choice)));
+  if (persist) {
+    try { localStorage.setItem('endo-spa-certificate-layout', choice); } catch { /* Optional storage. */ }
+  }
+}
+let savedCertificateLayout = 'overlap';
+try { savedCertificateLayout = localStorage.getItem('endo-spa-certificate-layout') || savedCertificateLayout; } catch { /* Use overlap. */ }
+applyCertificateLayout(savedCertificateLayout);
+certificateButtons.forEach(button => button.addEventListener('click', () => applyCertificateLayout(button.dataset.certificateChoice, true)));
+
 // One navigation for desktop and smaller windows.
 const header = document.querySelector('.local-header');
 const menuToggle = document.querySelector('.local-menu-toggle');
