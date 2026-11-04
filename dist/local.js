@@ -138,6 +138,23 @@ if (concernGallery) {
   applyConcernGalleryLayout(savedLayout);
 }
 
+// Compare treatment layouts without replacing the video or interrupting playback.
+const treatmentSection = document.getElementById('behandlung');
+const treatmentLayoutButtons = [...document.querySelectorAll('[data-treatment-choice]')];
+const treatmentLayouts = ['split65', 'split60', 'cards', 'video-left'];
+function applyTreatmentLayout(choice, persist = false) {
+  if (!treatmentLayouts.includes(choice)) choice = 'split65';
+  if (treatmentSection) treatmentSection.dataset.treatmentLayout = choice;
+  treatmentLayoutButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.treatmentChoice === choice)));
+  if (persist) {
+    try { localStorage.setItem('endo-spa-treatment-layout', choice); } catch { /* Optional storage. */ }
+  }
+}
+let savedTreatmentLayout = 'split65';
+try { savedTreatmentLayout = localStorage.getItem('endo-spa-treatment-layout') || savedTreatmentLayout; } catch { /* Use 65/35. */ }
+applyTreatmentLayout(savedTreatmentLayout);
+treatmentLayoutButtons.forEach(button => button.addEventListener('click', () => applyTreatmentLayout(button.dataset.treatmentChoice, true)));
+
 // One navigation for desktop and smaller windows.
 const header = document.querySelector('.local-header');
 const menuToggle = document.querySelector('.local-menu-toggle');
