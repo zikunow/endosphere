@@ -966,3 +966,9 @@ html[data-site-font] .endo-site .local-tech-explanation h3{font-size:18px!import
  .local-tech-intro-illustrated>.local-tech-intro-copy{grid-column:1;grid-row:2}
  .local-tech-intro-illustrated>.local-tech-illustration{grid-column:1;grid-row:3}
 }
+
+/* Slim certificate frames and a matching crop of the framed studio photograph. */
+.local-hero-certificates a{padding:3px;border-radius:6px}
+.local-certificate-crop{display:block;aspect-ratio:1.4;overflow:hidden;border-radius:2px}
+.local-hero-figure .local-certificate-crop img{width:100%;height:100%;aspect-ratio:auto;object-fit:cover;object-position:50% 15%;transform:scale(1.12);transform-origin:50% 15%}
+@media(max-width:767px){.local-hero-certificates a{padding:3px}}
