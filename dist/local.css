@@ -1112,7 +1112,7 @@ html[data-site-font] .endo-site .local-treatment-layout .local-step-grid h3{grid
 .local-treatment-layout .local-tech-process .local-section-label{font-size:10px;margin:0 0 10px}
 html[data-site-font] .endo-site .local-treatment-layout .local-tech-process h3{font-size:23px!important;margin:0 0 12px}
 .local-treatment-layout .local-tech-process p:not(.local-section-label){max-width:none;font-size:13px;line-height:1.75;margin:0}
-.local-treatment-layout .local-tech-process>.local-treatment-video{grid-area:video;display:block;width:100%;max-width:none;height:auto;max-height:none;aspect-ratio:1080/1582;object-fit:contain;align-self:start;justify-self:stretch;border-radius:16px;background:transparent;box-shadow:0 12px 30px #17333f12}
+.local-treatment-layout .local-tech-process>.local-treatment-video{grid-area:video;display:block;width:100%;max-width:none;height:auto;max-height:none;aspect-ratio:1080/1582;object-fit:contain;align-self:end;justify-self:stretch;border-radius:16px;background:transparent;box-shadow:0 12px 30px #17333f12}
 /* A continuous, quieter text panel with a larger video. */
 [data-treatment-layout="split60"] .local-treatment-layout{grid-template-columns:minmax(0,60fr) minmax(0,40fr);gap:20px 40px}
 [data-treatment-layout="split60"] .local-step-grid{background:#fff;padding:10px 26px;border:1px solid #d5e2e9;border-radius:16px;box-sizing:border-box;gap:0}
@@ -1126,6 +1126,17 @@ html[data-site-font] .endo-site .local-treatment-layout .local-tech-process h3{f
 [data-treatment-layout="cards"] .local-tech-process>div{align-self:center;padding:32px}
 /* The video leads on the left, while the complete explanation stays on the right. */
 [data-treatment-layout="video-left"] .local-treatment-layout{grid-template-columns:minmax(0,35fr) minmax(0,65fr);grid-template-areas:"video steps" "video intro"}
+.local-treatment-layout .local-tech-process>.local-treatment-cta{display:none}
+[data-treatment-layout="split65"] .local-treatment-layout{grid-template-areas:"steps video" "intro intro"}
+[data-treatment-layout="split65"] .local-treatment-layout .local-step-grid{align-self:stretch;grid-template-rows:repeat(3,minmax(0,1fr))}
+[data-treatment-layout="split65"] .local-treatment-layout .local-tech-process>.local-treatment-video{align-self:start}
+[data-treatment-layout="split65"] .local-treatment-layout .local-treatment-intro{display:none}
+[data-treatment-layout="split65"] .local-treatment-layout .local-tech-process>.local-treatment-cta{display:flex;align-items:center;justify-content:space-between;gap:24px;background:transparent;border:0;border-radius:0;padding:20px 0 0}
+.local-treatment-cta .local-booking-button{flex-shrink:0}
+@media(max-width:900px){
+ [data-treatment-layout="split65"] .local-treatment-layout{grid-template-areas:"steps" "video" "intro"}
+ [data-treatment-layout="split65"] .local-treatment-layout .local-tech-process>.local-treatment-cta{flex-direction:column;align-items:flex-start;padding-top:8px}
+}
 @media(max-width:900px){
  .local-treatment-layout,[data-treatment-layout="split60"] .local-treatment-layout,[data-treatment-layout="cards"] .local-treatment-layout,[data-treatment-layout="video-left"] .local-treatment-layout{grid-template-columns:minmax(0,1fr);grid-template-areas:"steps" "intro" "video";gap:22px}
  .local-treatment-layout .local-tech-process>.local-treatment-video{width:min(100%,400px);justify-self:center}
@@ -1139,4 +1150,78 @@ html[data-site-font] .endo-site .local-treatment-layout .local-tech-process h3{f
  [data-treatment-layout="split60"] .local-step-grid{padding:0 16px}
  [data-treatment-layout="split60"] .local-step-grid li{padding:20px 0}
  .local-treatment-switcher button{padding:8px 10px;font-size:11px}
+}
+
+/* Fifth hero comparison: an unobstructed portrait with the handpiece. */
+[data-certificate-layout="photo-only"] .local-hero-certificates,
+[data-certificate-layout="photo-only"] .local-certificate-caption{display:none}
+[data-certificate-layout="photo-only"] .local-hero-photo-stage{padding-bottom:0}
+
+/* Full-width studio photograph with a readable text overlay. */
+.elementor-134 > section.local-hero[data-hero-layout^="photo-background"]{background-image:linear-gradient(90deg,rgba(242,249,253,.97) 0%,rgba(242,249,253,.93) 30%,rgba(242,249,253,.7) 49%,rgba(242,249,253,.08) 70%),var(--endo-hero-photo,url("assets/studio-portrait-2563.jpg"));background-size:cover;background-position:center 65%;min-height:680px}
+.elementor-134 > section.local-hero[data-hero-layout^="photo-background"]>.e-con-inner{grid-template-columns:1fr;gap:32px;min-height:560px;align-content:center}
+[data-hero-layout^="photo-background"] .local-hero-copy{max-width:570px}
+[data-hero-layout^="photo-background"] .local-hero-figure{width:100%;justify-self:stretch}
+[data-hero-layout^="photo-background"] .local-hero-photo-stage,
+[data-hero-layout^="photo-background"] .local-certificate-caption,
+[data-hero-layout^="photo-background"] .local-hero-backgrounds{display:none}
+[data-hero-layout^="photo-background"] .local-certificate-switcher{justify-content:flex-start;margin-top:0}
+[data-hero-layout^="photo-background"] .local-hero-figure figcaption{margin-top:0}
+@media(max-width:767px){
+ .elementor-134 > section.local-hero[data-hero-layout^="photo-background"]{background-image:linear-gradient(90deg,rgba(242,249,253,.96),rgba(242,249,253,.85) 52%,rgba(242,249,253,.25)),var(--endo-hero-photo,url("assets/studio-portrait-2563.jpg"));background-position:70% center;min-height:700px}
+ [data-hero-layout^="photo-background"] .local-hero-copy{max-width:85%}
+}
+
+[data-hero-layout="photo-background-2"]{--endo-hero-photo:url("assets/hero-studio-2563-2.jpg")}
+
+/* Shorter hero: keep the seated portrait at the bottom and crop the upper wall. */
+.elementor-134 > section.local-hero[data-hero-layout="photo-background-4"]{--endo-hero-photo:url("assets/hero-studio-2563-2.jpg");background-size:cover,auto 680px;background-repeat:no-repeat;background-position:center bottom,right bottom;background-color:#f2f9fd;min-height:540px;padding:32px 0}
+.elementor-134 > section.local-hero[data-hero-layout="photo-background-4"]>.e-con-inner{min-height:0;gap:20px}
+[data-hero-layout="photo-background-4"] .local-hero-copy{max-width:610px}
+.elementor [data-hero-layout="photo-background-4"] .local-hero-description{margin-block:16px}
+@media(max-width:767px){
+ .elementor-134 > section.local-hero[data-hero-layout="photo-background-4"]{background-position:72% bottom;min-height:620px;padding:28px 0}
+ [data-hero-layout="photo-background-4"] .local-hero-copy{max-width:85%}
+}
+
+/* Body and face animations: three local layout comparisons. */
+.local-application-switcher{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;width:100%;margin:12px 0 28px}
+.local-application-switcher button{font:inherit;font-size:12px;padding:10px 16px;color:#344b60;background:#e3f2fc;border:1px solid #c7dfef;border-radius:8px;cursor:pointer}
+.local-application-switcher button[aria-pressed="true"]{background:#007fba;color:#fff;border-color:#007fba}
+.local-application-switcher button:focus-visible{outline:2px solid #006da9;outline-offset:3px}
+.local-application-media{margin:0;min-width:0;align-self:center}
+.local-application-media img{display:block;width:100%;height:auto;border-radius:16px;object-fit:contain}
+.local-application-copy{min-width:0;display:flex;flex-direction:column}
+.local-tech-effects[data-application-layout="editorial"]{grid-template-columns:1fr;gap:56px}
+.local-tech-effects[data-application-layout="editorial"]>.local-application{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:48px;padding:0;background:transparent;border:0;align-items:center}
+[data-application-layout="editorial"] #gesichtsbehandlung{grid-template-columns:minmax(0,1fr) minmax(0,300px)}
+[data-application-layout="editorial"] #gesichtsbehandlung .local-application-media{grid-column:2;grid-row:1}
+[data-application-layout="editorial"] #gesichtsbehandlung .local-application-copy{grid-column:1;grid-row:1}
+.local-tech-effects[data-application-layout="cards"]{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.local-tech-effects[data-application-layout="cards"]>.local-application{display:flex;gap:26px;padding:24px;overflow:hidden}
+[data-application-layout="cards"] .local-application-media{width:100%;background:#cfe7f6;border-radius:14px;overflow:hidden}
+[data-application-layout="cards"] .local-application-media img{height:330px;width:100%;border-radius:0}
+[data-application-layout="cards"] .local-application-copy{flex:1}
+.local-tech-effects[data-application-layout="stage"]{grid-template-columns:1fr;gap:28px}
+.local-tech-effects[data-application-layout="stage"]>.local-application{display:grid;grid-template-columns:minmax(0,45fr) minmax(0,55fr);padding:0;overflow:hidden;gap:0}
+[data-application-layout="stage"] .local-application-media{background:#cfe7f6;height:100%;width:100%;display:flex;align-items:center;justify-content:center;padding:24px;box-sizing:border-box}
+[data-application-layout="stage"] .local-application-media img{height:540px;max-height:100%;width:auto;max-width:100%;box-shadow:0 16px 32px #17333f20}
+[data-application-layout="stage"] .local-application-copy{padding:40px}
+@media(max-width:767px){
+ .local-tech-effects[data-application-layout] {grid-template-columns:1fr;gap:30px}
+ .local-tech-effects[data-application-layout="editorial"]>.local-application,.local-tech-effects[data-application-layout="stage"]>.local-application{grid-template-columns:1fr;gap:24px}
+ [data-application-layout="editorial"] #gesichtsbehandlung .local-application-media,[data-application-layout="editorial"] #gesichtsbehandlung .local-application-copy{grid-column:auto;grid-row:auto}
+ [data-application-layout="editorial"] .local-application-media{width:min(100%,280px);justify-self:center}
+ [data-application-layout="stage"] .local-application-media{padding:20px;box-sizing:border-box}
+ [data-application-layout="stage"] .local-application-media img{height:420px}
+ [data-application-layout="stage"] .local-application-copy{padding:0 24px 24px}
+}
+
+/* Keep the application copy inset on both sides of the editorial panels. */
+.local-tech-effects[data-application-layout="editorial"]>.local-application{gap:0;overflow:hidden}
+[data-application-layout="editorial"] .local-application-copy{padding:32px 36px;box-sizing:border-box;width:100%;text-align:left}
+.local-application-copy>p,.local-application-copy>h3,.local-application-copy>h4{max-width:100%}
+@media(max-width:767px){
+ [data-application-layout="editorial"] .local-application-copy{padding:24px}
+ .local-tech-effects[data-application-layout="editorial"]>.local-application{gap:0}
 }

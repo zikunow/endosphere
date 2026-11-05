@@ -36,10 +36,19 @@ benefitsButtons.forEach(button => button.addEventListener('click', () => applyBe
 // Certificate photographs are genuine; the selector only changes their layout.
 const certificateFigure = document.querySelector('.local-hero-figure[data-certificate-layout]');
 const certificateButtons = [...document.querySelectorAll('[data-certificate-choice]')];
-const certificateLayouts = ['overlap', 'staggered', 'side', 'strip'];
+const certificateLayouts = ['overlap', 'staggered', 'side', 'photo-only', 'photo-background', 'photo-background-2', 'photo-background-4'];
+const heroPortrait = certificateFigure?.querySelector('.local-hero-portrait');
 function applyCertificateLayout(choice, persist = false) {
+  if (choice === 'strip' || choice === 'photo-background-3') choice = 'photo-background';
   if (!certificateLayouts.includes(choice)) choice = 'overlap';
-  if (certificateFigure) certificateFigure.dataset.certificateLayout = choice;
+  if (certificateFigure) {
+    certificateFigure.dataset.certificateLayout = choice;
+    certificateFigure.closest('.local-hero').dataset.heroLayout = choice;
+  }
+  if (heroPortrait) {
+    heroPortrait.src = choice === 'photo-only' ? 'assets/endospheres-hero-3513.jpg' : 'assets/endospheres-hero-3512.jpg';
+    heroPortrait.alt = choice === 'photo-only' ? 'Alina Kolosova mit dem Endospheres-Handstück und Gerät im Studio' : 'Behandlerin mit dem Endospheres-Gerät im Endo-SPA Studio';
+  }
   certificateButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.certificateChoice === choice)));
   if (persist) {
     try { localStorage.setItem('endo-spa-certificate-layout', choice); } catch { /* Optional storage. */ }
@@ -305,3 +314,19 @@ async function prepareResults() {
   results.hidden = false;
 }
 prepareResults();
+
+// Three compositions of the supplied body and face animations.
+const applicationGallery = document.querySelector('[data-application-layout]');
+const applicationButtons = [...document.querySelectorAll('[data-application-choice]')];
+function applyApplicationLayout(choice, persist = false) {
+  if (!['editorial', 'cards', 'stage'].includes(choice)) choice = 'editorial';
+  if (applicationGallery) applicationGallery.dataset.applicationLayout = choice;
+  applicationButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.applicationChoice === choice)));
+  if (persist) {
+    try { localStorage.setItem('endo-spa-application-layout', choice); } catch { /* Optional preference. */ }
+  }
+}
+let applicationLayout = 'editorial';
+try { applicationLayout = localStorage.getItem('endo-spa-application-layout') || applicationLayout; } catch { /* Use editorial. */ }
+applyApplicationLayout(applicationLayout);
+applicationButtons.forEach(button => button.addEventListener('click', () => applyApplicationLayout(button.dataset.applicationChoice, true)));
