@@ -1225,3 +1225,5 @@ html[data-site-font] .endo-site .local-treatment-layout .local-tech-process h3{f
  [data-application-layout="editorial"] .local-application-copy{padding:24px}
  .local-tech-effects[data-application-layout="editorial"]>.local-application{gap:0}
 }
+
+.local-faq-answer p+p{margin-top:12px}
