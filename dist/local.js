@@ -1,21 +1,5 @@
 'use strict';
 
-// Local comparison of the hero background; font and heading colour stay fixed.
-const heroBackgroundChoices = ['ice', 'sky', 'azure', 'cornflower'];
-const heroBackgroundButtons = [...document.querySelectorAll('[data-hero-background]')];
-function applyHeroBackground(choice, persist = false) {
-  if (!heroBackgroundChoices.includes(choice)) choice = 'sky';
-  document.documentElement.dataset.heroBackground = choice;
-  heroBackgroundButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.heroBackground === choice)));
-  if (persist) {
-    try { localStorage.setItem('endo-spa-hero-background', choice); } catch { /* Comparison also works without storage. */ }
-  }
-}
-let savedHeroBackground = 'sky';
-try { savedHeroBackground = localStorage.getItem('endo-spa-hero-background') || savedHeroBackground; } catch { /* Use Himmelblau. */ }
-applyHeroBackground(savedHeroBackground);
-heroBackgroundButtons.forEach(button => button.addEventListener('click', () => applyHeroBackground(button.dataset.heroBackground, true)));
-
 // Compare the studio benefits without duplicating their content.
 const studioBenefits = document.getElementById('studio-benefits');
 const benefitsButtons = [...document.querySelectorAll('[data-benefits-choice]')];
@@ -32,32 +16,6 @@ let savedBenefitsLayout = 'cards';
 try { savedBenefitsLayout = localStorage.getItem('endo-spa-benefits-layout') || savedBenefitsLayout; } catch { /* Use cards. */ }
 applyBenefitsLayout(savedBenefitsLayout);
 benefitsButtons.forEach(button => button.addEventListener('click', () => applyBenefitsLayout(button.dataset.benefitsChoice, true)));
-
-// Certificate photographs are genuine; the selector only changes their layout.
-const certificateFigure = document.querySelector('.local-hero-figure[data-certificate-layout]');
-const certificateButtons = [...document.querySelectorAll('[data-certificate-choice]')];
-const certificateLayouts = ['overlap', 'staggered', 'side', 'photo-only', 'photo-background', 'photo-background-2', 'photo-background-4'];
-const heroPortrait = certificateFigure?.querySelector('.local-hero-portrait');
-function applyCertificateLayout(choice, persist = false) {
-  if (choice === 'strip' || choice === 'photo-background-3') choice = 'photo-background';
-  if (!certificateLayouts.includes(choice)) choice = 'overlap';
-  if (certificateFigure) {
-    certificateFigure.dataset.certificateLayout = choice;
-    certificateFigure.closest('.local-hero').dataset.heroLayout = choice;
-  }
-  if (heroPortrait) {
-    heroPortrait.src = choice === 'photo-only' ? 'assets/endospheres-hero-3513.jpg' : 'assets/endospheres-hero-3512.jpg';
-    heroPortrait.alt = choice === 'photo-only' ? 'Alina Kolosova mit dem Endospheres-Handstück und Gerät im Studio' : 'Behandlerin mit dem Endospheres-Gerät im Endo-SPA Studio';
-  }
-  certificateButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.certificateChoice === choice)));
-  if (persist) {
-    try { localStorage.setItem('endo-spa-certificate-layout', choice); } catch { /* Optional storage. */ }
-  }
-}
-let savedCertificateLayout = 'overlap';
-try { savedCertificateLayout = localStorage.getItem('endo-spa-certificate-layout') || savedCertificateLayout; } catch { /* Use overlap. */ }
-applyCertificateLayout(savedCertificateLayout);
-certificateButtons.forEach(button => button.addEventListener('click', () => applyCertificateLayout(button.dataset.certificateChoice, true)));
 
 // Collages and two circular, automatically advancing comparison sliders.
 const concernGallery = document.getElementById('concern-gallery');

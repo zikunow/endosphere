@@ -486,9 +486,6 @@ body.endo-site{margin:0;color:var(--endo-ink);background:#fff}
 .elementor .local-hero-promise{font-family:"Cormorant Garamond",Georgia,serif!important;font-size:29px;line-height:1.2;max-width:28ch;margin:16px 0 0;color:#414b4e}
 .elementor .local-hero-description{font-size:14px;line-height:1.8;max-width:51ch;margin:24px 0}
 .local-hero-actions{display:flex;flex-direction:column;align-items:flex-start;gap:16px}
-.local-hero-figure{margin:0;width:min(100%,360px);justify-self:center}
-.local-hero-figure img{display:block;width:100%;height:auto;aspect-ratio:auto;object-fit:contain;border-radius:var(--endo-radius)}
-@media(max-width:767px){.local-hero-figure{width:min(100%,300px)}}
 .elementor .local-hero-address{font-size:12px;color:var(--endo-muted);margin:24px 0 0}
 .elementor-134 > section.local-concerns{background:#fff;padding-bottom:72px}
 .local-concerns-heading{max-width:820px}
@@ -789,21 +786,6 @@ html[data-site-font] body.endo-site .local-color-switcher button:hover{backgroun
 @media(max-width:900px){.local-concerns-cta{grid-template-columns:1fr;gap:24px;padding:24px}}
 
 /* Client comparison: four blue hero backgrounds. */
-:root{--endo-hero-background:#cceaff}
-:root[data-hero-background="ice"]{--endo-hero-background:#e0f3ff}
-:root[data-hero-background="sky"]{--endo-hero-background:#cceaff}
-:root[data-hero-background="azure"]{--endo-hero-background:#b5dcfa}
-:root[data-hero-background="cornflower"]{--endo-hero-background:#9dc9f2}
-.elementor-134 > section.local-hero{background:var(--endo-hero-background)}
-.local-hero-backgrounds{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
-.local-hero-backgrounds button{display:inline-flex;align-items:center;gap:7px;padding:8px 10px;border:1px solid #6d8ba5;border-radius:6px;background:#ffffffb3;color:#243d52;font-size:11px;line-height:1.5;cursor:pointer}
-.local-hero-backgrounds button[aria-pressed="true"]{border-color:#006da9;background:#fff;box-shadow:0 0 0 1px #006da9}
-.local-hero-backgrounds button:hover{background:#fff}
-.local-hero-backgrounds button:focus-visible{outline:2px solid #006da9;outline-offset:3px}
-.local-hero-swatch{width:14px;height:14px;border-radius:50%;border:1px solid #6d8ba566;background:#e0f3ff;flex-shrink:0}
-[data-hero-background="sky"]>.local-hero-swatch{background:#cceaff}
-[data-hero-background="azure"]>.local-hero-swatch{background:#b5dcfa}
-[data-hero-background="cornflower"]>.local-hero-swatch{background:#9dc9f2}
 
 /* Three real studio photographs form a responsive collage. */
 .local-studio-gallery{margin-top:40px}
@@ -891,37 +873,6 @@ html[data-site-font] .endo-site #forschung .local-research-institutes h3{font-si
 .local-research .local-research-institutes li span{font-size:12px;line-height:1.5;margin-top:3px}
 .local-research .local-research-institutes>a{font-size:12px;line-height:1.5}
 
-/* Four arrangements of two photographs of the same genuine certificate. */
-.local-hero-figure[data-certificate-layout]{width:min(100%,440px);min-width:0}
-.local-hero-photo-stage{position:relative;padding:0 0 76px;isolation:isolate}
-.local-hero-figure .local-hero-portrait{width:min(100%,360px);height:auto;margin-inline:auto;object-fit:contain}
-.local-hero-certificates{position:absolute;left:0;right:0;bottom:12px;display:flex;align-items:center;justify-content:center;gap:14px;padding-inline:8px}
-.local-hero-certificates a{display:block;width:calc(50% - 7px);min-width:0;padding:7px;background:#fff;border:1px solid #d5e2e9;border-radius:8px;box-shadow:0 12px 28px #17333f29;box-sizing:border-box;overflow:hidden}
-.local-hero-figure .local-hero-certificates img{display:block;width:100%;height:auto;aspect-ratio:1.4;object-fit:contain;border-radius:2px;background:#faf9f6;filter:brightness(1.06) saturate(.92)}
-.local-hero-certificates a:focus-visible{outline:3px solid #006da9;outline-offset:4px}
-.local-hero-figure figcaption{margin-top:8px;text-align:center}
-.local-certificate-caption{font-size:11px;line-height:1.6;color:#344b60;text-decoration:underline;text-underline-offset:3px}
-.local-certificate-switcher{display:flex;flex-wrap:wrap;justify-content:center;gap:5px;margin-top:14px}
-.local-certificate-switcher button{border:1px solid #7896ad;border-radius:6px;background:#ffffffb3;color:#243d52;font-size:11px;line-height:1.5;padding:7px 9px;cursor:pointer}
-.local-certificate-switcher button[aria-pressed="true"]{background:#fff;border-color:#006da9;box-shadow:0 0 0 1px #006da9}
-.local-certificate-switcher button:hover{background:#fff}
-.local-certificate-switcher button:focus-visible{outline:2px solid #006da9;outline-offset:3px}
-[data-certificate-layout="staggered"] .local-hero-certificates a:first-child{transform:translateY(-16px) rotate(-5deg)}
-[data-certificate-layout="staggered"] .local-hero-certificates a:last-child{transform:translateY(8px) rotate(5deg)}
-[data-certificate-layout="side"] .local-hero-portrait{width:calc(100% - 80px);max-width:360px;margin-left:0;margin-right:auto}
-[data-certificate-layout="side"] .local-hero-certificates{left:auto;right:0;bottom:30px;width:150px;flex-direction:column;padding:0;gap:12px}
-[data-certificate-layout="side"] .local-hero-certificates a{width:100%}
-[data-certificate-layout="strip"] .local-hero-photo-stage{padding-bottom:0}
-[data-certificate-layout="strip"] .local-hero-certificates{position:relative;margin-top:-16px;bottom:auto}
-@media(max-width:767px){
- .local-hero-figure[data-certificate-layout]{width:min(100%,360px)}
- .local-hero-figure .local-hero-portrait{max-width:300px}
- [data-certificate-layout="side"] .local-hero-certificates{width:125px}
- [data-certificate-layout="side"] .local-hero-portrait{width:calc(100% - 65px)}
- .local-hero-certificates{gap:10px;padding-inline:4px}
- .local-hero-certificates a{padding:5px}
-}
-
 /* Method introduction: continuous text column with the supplied illustration. */
 .local-tech-intro.local-tech-intro-illustrated{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:64px;align-items:start}
 .local-tech-intro-copy{min-width:0}
@@ -966,12 +917,6 @@ html[data-site-font] .endo-site .local-tech-explanation h3{font-size:18px!import
  .local-tech-intro-illustrated>.local-tech-intro-copy{grid-column:1;grid-row:2}
  .local-tech-intro-illustrated>.local-tech-illustration{grid-column:1;grid-row:3}
 }
-
-/* Slim certificate frames and a matching crop of the framed studio photograph. */
-.local-hero-certificates a{padding:3px;border-radius:6px}
-.local-certificate-crop{display:block;aspect-ratio:1.4;overflow:hidden;border-radius:2px}
-.local-hero-figure .local-certificate-crop img{width:100%;height:100%;aspect-ratio:auto;object-fit:cover;object-position:50% 15%;transform:scale(1.12);transform-origin:50% 15%}
-@media(max-width:767px){.local-hero-certificates a{padding:3px}}
 
 /* Match text panels on white sections to the alternating blue section background. */
 :root{--endo-panel-blue:#e3f2fc}
@@ -1152,36 +1097,27 @@ html[data-site-font] .endo-site .local-treatment-layout .local-tech-process h3{f
  .local-treatment-switcher button{padding:8px 10px;font-size:11px}
 }
 
-/* Fifth hero comparison: an unobstructed portrait with the handpiece. */
-[data-certificate-layout="photo-only"] .local-hero-certificates,
-[data-certificate-layout="photo-only"] .local-certificate-caption{display:none}
-[data-certificate-layout="photo-only"] .local-hero-photo-stage{padding-bottom:0}
-
 /* Full-width studio photograph with a readable text overlay. */
-.elementor-134 > section.local-hero[data-hero-layout^="photo-background"]{background-image:linear-gradient(90deg,rgba(242,249,253,.97) 0%,rgba(242,249,253,.93) 30%,rgba(242,249,253,.7) 49%,rgba(242,249,253,.08) 70%),var(--endo-hero-photo,url("assets/studio-portrait-2563.jpg"));background-size:cover;background-position:center 65%;min-height:680px}
-.elementor-134 > section.local-hero[data-hero-layout^="photo-background"]>.e-con-inner{grid-template-columns:1fr;gap:32px;min-height:560px;align-content:center}
-[data-hero-layout^="photo-background"] .local-hero-copy{max-width:570px}
-[data-hero-layout^="photo-background"] .local-hero-figure{width:100%;justify-self:stretch}
-[data-hero-layout^="photo-background"] .local-hero-photo-stage,
-[data-hero-layout^="photo-background"] .local-certificate-caption,
-[data-hero-layout^="photo-background"] .local-hero-backgrounds{display:none}
-[data-hero-layout^="photo-background"] .local-certificate-switcher{justify-content:flex-start;margin-top:0}
-[data-hero-layout^="photo-background"] .local-hero-figure figcaption{margin-top:0}
-@media(max-width:767px){
- .elementor-134 > section.local-hero[data-hero-layout^="photo-background"]{background-image:linear-gradient(90deg,rgba(242,249,253,.96),rgba(242,249,253,.85) 52%,rgba(242,249,253,.25)),var(--endo-hero-photo,url("assets/studio-portrait-2563.jpg"));background-position:70% center;min-height:700px}
- [data-hero-layout^="photo-background"] .local-hero-copy{max-width:85%}
+.elementor-134 > section.local-hero{
+  --endo-hero-photo:url("assets/hero-studio-3262.webp?v=final");
+  min-height:680px;
+  background-color:#f2f9fd;
+  background-image:linear-gradient(90deg,rgba(242,249,253,.97) 0%,rgba(242,249,253,.93) 30%,rgba(242,249,253,.7) 49%,rgba(242,249,253,.08) 70%),var(--endo-hero-photo);
+  background-size:cover;
+  background-position:right 65%;
 }
-
-[data-hero-layout="photo-background-2"]{--endo-hero-photo:url("assets/hero-studio-2563-2.jpg")}
-
-/* Shorter hero: keep the seated portrait at the bottom and crop the upper wall. */
-.elementor-134 > section.local-hero[data-hero-layout="photo-background-4"]{--endo-hero-photo:url("assets/hero-studio-2563-2.jpg");background-size:cover,auto 680px;background-repeat:no-repeat;background-position:center bottom,right bottom;background-color:#f2f9fd;min-height:540px;padding:32px 0}
-.elementor-134 > section.local-hero[data-hero-layout="photo-background-4"]>.e-con-inner{min-height:0;gap:20px}
-[data-hero-layout="photo-background-4"] .local-hero-copy{max-width:610px}
-.elementor [data-hero-layout="photo-background-4"] .local-hero-description{margin-block:16px}
+.elementor-134 > section.local-hero > .e-con-inner{grid-template-columns:1fr;min-height:560px;align-content:center}
+.local-hero-copy{max-width:570px}
 @media(max-width:767px){
- .elementor-134 > section.local-hero[data-hero-layout="photo-background-4"]{background-position:72% bottom;min-height:620px;padding:28px 0}
- [data-hero-layout="photo-background-4"] .local-hero-copy{max-width:85%}
+ .elementor-134 > section.local-hero{
+   min-height:0;
+   padding:32px 0 58vw;
+   background-image:linear-gradient(#f2f9fd 0%,#f2f9fd calc(100% - 68vw),rgba(242,249,253,0) calc(100% - 46vw)),var(--endo-hero-photo);
+   background-repeat:no-repeat;
+   background-size:100% 100%,auto 75vw;
+   background-position:center,right bottom;
+ }
+ .elementor-134 > section.local-hero > .e-con-inner{min-height:0}
 }
 
 /* Body and face animations: three local layout comparisons. */
