@@ -1,5 +1,20 @@
 'use strict';
 
+const hero = document.getElementById('start');
+const heroPhotoSwitcher = hero?.querySelector('.local-hero-photo-switcher');
+if (heroPhotoSwitcher) {
+  const heroPhotoButtons = [...heroPhotoSwitcher.querySelectorAll('[data-hero-photo-choice]')];
+  heroPhotoButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      hero.dataset.heroPhoto = button.dataset.heroPhotoChoice;
+      heroPhotoButtons.forEach(photoButton => {
+        photoButton.setAttribute('aria-pressed', String(photoButton === button));
+      });
+    });
+  });
+  heroPhotoSwitcher.hidden = false;
+}
+
 // Compare the studio benefits without duplicating their content.
 const studioBenefits = document.getElementById('studio-benefits');
 const benefitsButtons = [...document.querySelectorAll('[data-benefits-choice]')];
@@ -74,11 +89,9 @@ if (concernGallery) {
       active = 0;
       paint();
     } else if (choice === 'strip') {
-      // Face comparisons first, then feet, thigh and body contour comparisons.
-      [4, 3, 0, 1, 2].forEach(index => {
-        if (!photos[index]) return;
-        photos[index].hidden = false;
-        grid.append(photos[index]);
+      photos.forEach(photo => {
+        photo.hidden = false;
+        grid.append(photo);
       });
     } else {
       photos.forEach((photo, index) => { photo.hidden = false; originalParents[index].append(photo); });
@@ -108,7 +121,7 @@ if (concernGallery) {
 // Compare treatment layouts without replacing the video or interrupting playback.
 const treatmentSection = document.getElementById('behandlung');
 const treatmentLayoutButtons = [...document.querySelectorAll('[data-treatment-choice]')];
-const treatmentLayouts = ['split65', 'split60', 'cards', 'video-left'];
+const treatmentLayouts = ['split65', 'split60'];
 function applyTreatmentLayout(choice, persist = false) {
   if (!treatmentLayouts.includes(choice)) choice = 'split65';
   if (treatmentSection) treatmentSection.dataset.treatmentLayout = choice;
@@ -133,6 +146,25 @@ function setMenu(open) {
   navigation.inert = compactNavigation.matches && !open;
 }
 if (header && menuToggle && navigation) {
+  const fontSizeToggle = navigation.querySelector('.local-nav-size');
+  if (fontSizeToggle) {
+    const preferenceKey = 'endo-spa-menu-large-text';
+    function setMenuFontSize(large) {
+      navigation.dataset.fontSize = large ? 'large' : 'normal';
+      fontSizeToggle.setAttribute('aria-pressed', String(large));
+    }
+
+    let large = false;
+    try { large = localStorage.getItem(preferenceKey) === 'true'; } catch { /* Default to normal size. */ }
+    setMenuFontSize(large);
+    fontSizeToggle.hidden = false;
+    fontSizeToggle.addEventListener('click', () => {
+      large = !large;
+      setMenuFontSize(large);
+      try { localStorage.setItem(preferenceKey, String(large)); } catch { /* The toggle works without storage. */ }
+    });
+  }
+
   setMenu(false);
   menuToggle.addEventListener('click', () => setMenu(menuToggle.getAttribute('aria-expanded') !== 'true'));
   navigation.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenu(false)));
@@ -146,6 +178,34 @@ if (header && menuToggle && navigation) {
   new ResizeObserver(() => {
     document.documentElement.style.setProperty('--local-header-offset', Math.ceil(header.getBoundingClientRect().height + 20) + 'px');
   }).observe(header);
+}
+
+const contactForm = document.querySelector('.local-contact-form');
+contactForm?.addEventListener('submit', event => {
+  event.preventDefault();
+  const fields = new FormData(contactForm);
+  const subject = encodeURIComponent(fields.get('Betreff'));
+  const lines = [
+    `Name: ${fields.get('Name')}`,
+    `E-Mail: ${fields.get('E-Mail')}`,
+  ];
+  const phone = fields.get('Telefon').trim();
+  if (phone) lines.push(`Telefon: ${phone}`);
+  const message = fields.get('Nachricht').replace(/\r?\n/g, '\r\n');
+  const body = encodeURIComponent([...lines, '', message].join('\r\n'));
+  window.location.href = `${contactForm.action}?subject=${subject}&body=${body}`;
+});
+
+const loadContactMap = document.querySelector('[data-contact-map-load]');
+const contactMapEmbed = document.getElementById('contact-map-embed');
+if (loadContactMap && contactMapEmbed) {
+  loadContactMap.hidden = false;
+  loadContactMap.addEventListener('click', () => {
+    const map = contactMapEmbed.content.firstElementChild.cloneNode(true);
+    contactMapEmbed.replaceWith(map);
+    loadContactMap.hidden = true;
+    map.focus({ preventScroll: true });
+  }, { once: true });
 }
 
 // Price tabs support mouse, arrows and Home/End.
@@ -171,6 +231,19 @@ document.querySelectorAll('[role="tablist"]').forEach(group => {
   });
   select(tabs.find(tab => tab.getAttribute('aria-selected') === 'true') || tabs[0]);
 });
+
+const priceComparison = document.getElementById('preise');
+const priceComparisonSwitcher = priceComparison?.querySelector('.local-price-comparison-switcher');
+if (priceComparisonSwitcher) {
+  const buttons = priceComparisonSwitcher.querySelectorAll('[data-price-comparison-choice]');
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      priceComparison.dataset.priceComparison = button.dataset.priceComparisonChoice;
+      buttons.forEach(peer => peer.setAttribute('aria-pressed', String(peer === button)));
+    });
+  });
+  priceComparisonSwitcher.hidden = false;
+}
 
 // Direct research links also reveal their content.
 function revealAnchor() {
@@ -272,6 +345,71 @@ async function prepareResults() {
   results.hidden = false;
 }
 prepareResults();
+
+const methodActions = document.getElementById('method-actions');
+const methodActionsTrack = methodActions?.querySelector('.local-method-actions-track');
+const methodActionsControls = methodActions?.querySelector('.local-method-actions-controls');
+if (methodActionsTrack && methodActionsControls) {
+  const previous = methodActionsControls.querySelector('[data-method-action-step="-1"]');
+  const next = methodActionsControls.querySelector('[data-method-action-step="1"]');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function updateMethodActionsControls() {
+    previous.disabled = methodActionsTrack.scrollLeft < 1;
+    next.disabled = methodActionsTrack.scrollLeft + methodActionsTrack.clientWidth >= methodActionsTrack.scrollWidth - 1;
+  }
+
+  let animationFrame;
+  let destination;
+
+  function stopMethodActionsAnimation() {
+    if (animationFrame === undefined) return;
+    cancelAnimationFrame(animationFrame);
+    animationFrame = undefined;
+    destination = undefined;
+    methodActionsTrack.classList.remove('is-animating');
+  }
+
+  [previous, next].forEach(button => {
+    button.addEventListener('click', () => {
+      const [first, second] = methodActionsTrack.children;
+      const step = second.getBoundingClientRect().left - first.getBoundingClientRect().left;
+      const start = methodActionsTrack.scrollLeft;
+      const index = Math.round((destination ?? start) / step);
+      const limit = methodActionsTrack.scrollWidth - methodActionsTrack.clientWidth;
+      const target = Math.max(0, Math.min(limit, (index + Number(button.dataset.methodActionStep)) * step));
+      if (target === destination) return;
+      stopMethodActionsAnimation();
+      if (reducedMotion.matches) {
+        methodActionsTrack.scrollLeft = target;
+        return;
+      }
+
+      const started = performance.now();
+      destination = target;
+      methodActionsTrack.classList.add('is-animating');
+      function animate(now) {
+        const progress = Math.min(1, Math.max(0, (now - started) / 520));
+        const eased = (1 - Math.cos(Math.PI * progress)) / 2;
+        methodActionsTrack.scrollLeft = start + (target - start) * eased;
+        if (progress < 1) {
+          animationFrame = requestAnimationFrame(animate);
+        } else {
+          stopMethodActionsAnimation();
+        }
+      }
+      animationFrame = requestAnimationFrame(animate);
+    });
+  });
+  for (const event of ['pointerdown', 'wheel', 'keydown']) {
+    methodActionsTrack.addEventListener(event, stopMethodActionsAnimation, { passive: true });
+  }
+  reducedMotion.addEventListener('change', stopMethodActionsAnimation);
+  methodActionsControls.hidden = false;
+  methodActionsTrack.addEventListener('scroll', updateMethodActionsControls, { passive: true });
+  new ResizeObserver(updateMethodActionsControls).observe(methodActionsTrack);
+  updateMethodActionsControls();
+}
 
 // Three compositions of the supplied body and face animations.
 const applicationGallery = document.querySelector('[data-application-layout]');
