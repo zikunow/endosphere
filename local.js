@@ -1,20 +1,5 @@
 'use strict';
 
-const hero = document.getElementById('start');
-const heroPhotoSwitcher = hero?.querySelector('.local-hero-photo-switcher');
-if (heroPhotoSwitcher) {
-  const heroPhotoButtons = [...heroPhotoSwitcher.querySelectorAll('[data-hero-photo-choice]')];
-  heroPhotoButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      hero.dataset.heroPhoto = button.dataset.heroPhotoChoice;
-      heroPhotoButtons.forEach(photoButton => {
-        photoButton.setAttribute('aria-pressed', String(photoButton === button));
-      });
-    });
-  });
-  heroPhotoSwitcher.hidden = false;
-}
-
 // Compare the studio benefits without duplicating their content.
 const studioBenefits = document.getElementById('studio-benefits');
 const benefitsButtons = [...document.querySelectorAll('[data-benefits-choice]')];
@@ -118,23 +103,6 @@ if (concernGallery) {
   applyConcernGalleryLayout(savedLayout);
 }
 
-// Compare treatment layouts without replacing the video or interrupting playback.
-const treatmentSection = document.getElementById('behandlung');
-const treatmentLayoutButtons = [...document.querySelectorAll('[data-treatment-choice]')];
-const treatmentLayouts = ['split65', 'split60'];
-function applyTreatmentLayout(choice, persist = false) {
-  if (!treatmentLayouts.includes(choice)) choice = 'split65';
-  if (treatmentSection) treatmentSection.dataset.treatmentLayout = choice;
-  treatmentLayoutButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.treatmentChoice === choice)));
-  if (persist) {
-    try { localStorage.setItem('endo-spa-treatment-layout', choice); } catch { /* Optional storage. */ }
-  }
-}
-let savedTreatmentLayout = 'split65';
-try { savedTreatmentLayout = localStorage.getItem('endo-spa-treatment-layout') || savedTreatmentLayout; } catch { /* Use 65/35. */ }
-applyTreatmentLayout(savedTreatmentLayout);
-treatmentLayoutButtons.forEach(button => button.addEventListener('click', () => applyTreatmentLayout(button.dataset.treatmentChoice, true)));
-
 // One navigation for desktop and smaller windows.
 const header = document.querySelector('.local-header');
 const menuToggle = document.querySelector('.local-menu-toggle');
@@ -146,25 +114,6 @@ function setMenu(open) {
   navigation.inert = compactNavigation.matches && !open;
 }
 if (header && menuToggle && navigation) {
-  const fontSizeToggle = navigation.querySelector('.local-nav-size');
-  if (fontSizeToggle) {
-    const preferenceKey = 'endo-spa-menu-large-text';
-    function setMenuFontSize(large) {
-      navigation.dataset.fontSize = large ? 'large' : 'normal';
-      fontSizeToggle.setAttribute('aria-pressed', String(large));
-    }
-
-    let large = false;
-    try { large = localStorage.getItem(preferenceKey) === 'true'; } catch { /* Default to normal size. */ }
-    setMenuFontSize(large);
-    fontSizeToggle.hidden = false;
-    fontSizeToggle.addEventListener('click', () => {
-      large = !large;
-      setMenuFontSize(large);
-      try { localStorage.setItem(preferenceKey, String(large)); } catch { /* The toggle works without storage. */ }
-    });
-  }
-
   setMenu(false);
   menuToggle.addEventListener('click', () => setMenu(menuToggle.getAttribute('aria-expanded') !== 'true'));
   navigation.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenu(false)));
@@ -196,17 +145,17 @@ contactForm?.addEventListener('submit', event => {
   window.location.href = `${contactForm.action}?subject=${subject}&body=${body}`;
 });
 
-const loadContactMap = document.querySelector('[data-contact-map-load]');
-const contactMapEmbed = document.getElementById('contact-map-embed');
-if (loadContactMap && contactMapEmbed) {
-  loadContactMap.hidden = false;
-  loadContactMap.addEventListener('click', () => {
-    const map = contactMapEmbed.content.firstElementChild.cloneNode(true);
-    contactMapEmbed.replaceWith(map);
-    loadContactMap.hidden = true;
+document.querySelectorAll('[data-contact-map-load]').forEach(button => {
+  const template = button.closest('section').querySelector('template');
+  if (!template) return;
+  button.hidden = false;
+  button.addEventListener('click', () => {
+    const map = template.content.firstElementChild.cloneNode(true);
+    template.replaceWith(map);
+    button.hidden = true;
     map.focus({ preventScroll: true });
   }, { once: true });
-}
+});
 
 // Price tabs support mouse, arrows and Home/End.
 document.querySelectorAll('[role="tablist"]').forEach(group => {
@@ -231,19 +180,6 @@ document.querySelectorAll('[role="tablist"]').forEach(group => {
   });
   select(tabs.find(tab => tab.getAttribute('aria-selected') === 'true') || tabs[0]);
 });
-
-const priceComparison = document.getElementById('preise');
-const priceComparisonSwitcher = priceComparison?.querySelector('.local-price-comparison-switcher');
-if (priceComparisonSwitcher) {
-  const buttons = priceComparisonSwitcher.querySelectorAll('[data-price-comparison-choice]');
-  buttons.forEach(button => {
-    button.addEventListener('click', () => {
-      priceComparison.dataset.priceComparison = button.dataset.priceComparisonChoice;
-      buttons.forEach(peer => peer.setAttribute('aria-pressed', String(peer === button)));
-    });
-  });
-  priceComparisonSwitcher.hidden = false;
-}
 
 // Direct research links also reveal their content.
 function revealAnchor() {
