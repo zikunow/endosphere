@@ -1533,3 +1533,10 @@ html[data-site-font] .endo-site .local-contact-location h3{margin:0;font-size:24
  .local-contact-compact .local-contact-location{padding:24px 18px}
  .local-contact-location .local-contact-map-actions{flex-direction:column;gap:16px}
 }
+
+.local-studio-photo-gallery{margin-top:40px}
+.local-studio-photo-placeholder{display:grid;place-items:center;width:100%;aspect-ratio:4/3;border:1px solid #c7dfef;border-radius:12px;background:#e3f2fc;color:#8eb5ce;box-sizing:border-box}
+.local-studio-photo-placeholder svg{width:48px;height:48px}
+.local-studio-photo-gallery .local-method-actions-track img{width:100%;aspect-ratio:3/4;object-fit:contain;background:#e3f2fc}
+.local-studio-photo-gallery .local-method-actions-track a{display:block;border-radius:12px;overflow:hidden}
+.local-studio-photo-gallery .local-method-actions-track a:focus-visible{outline:3px solid #006da9;outline-offset:3px}

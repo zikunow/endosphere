@@ -1,22 +1,5 @@
 'use strict';
 
-// Compare the studio benefits without duplicating their content.
-const studioBenefits = document.getElementById('studio-benefits');
-const benefitsButtons = [...document.querySelectorAll('[data-benefits-choice]')];
-const benefitsLayouts = ['cards', 'compact', 'numbered'];
-function applyBenefitsLayout(choice, persist = false) {
-  if (!benefitsLayouts.includes(choice)) choice = 'cards';
-  if (studioBenefits) studioBenefits.dataset.benefitsLayout = choice;
-  benefitsButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.benefitsChoice === choice)));
-  if (persist) {
-    try { localStorage.setItem('endo-spa-benefits-layout', choice); } catch { /* Optional storage. */ }
-  }
-}
-let savedBenefitsLayout = 'cards';
-try { savedBenefitsLayout = localStorage.getItem('endo-spa-benefits-layout') || savedBenefitsLayout; } catch { /* Use cards. */ }
-applyBenefitsLayout(savedBenefitsLayout);
-benefitsButtons.forEach(button => button.addEventListener('click', () => applyBenefitsLayout(button.dataset.benefitsChoice, true)));
-
 // Collages and two circular, automatically advancing comparison sliders.
 const concernGallery = document.getElementById('concern-gallery');
 const concernGalleryButtons = [...document.querySelectorAll('[data-concern-gallery-choice]')];
@@ -282,7 +265,7 @@ async function prepareResults() {
 }
 prepareResults();
 
-const methodActions = document.getElementById('method-actions');
+document.querySelectorAll('.local-method-actions').forEach(methodActions => {
 const methodActionsTrack = methodActions?.querySelector('.local-method-actions-track');
 const methodActionsControls = methodActions?.querySelector('.local-method-actions-controls');
 if (methodActionsTrack && methodActionsControls) {
@@ -346,19 +329,4 @@ if (methodActionsTrack && methodActionsControls) {
   new ResizeObserver(updateMethodActionsControls).observe(methodActionsTrack);
   updateMethodActionsControls();
 }
-
-// Three compositions of the supplied body and face animations.
-const applicationGallery = document.querySelector('[data-application-layout]');
-const applicationButtons = [...document.querySelectorAll('[data-application-choice]')];
-function applyApplicationLayout(choice, persist = false) {
-  if (!['editorial', 'cards', 'stage'].includes(choice)) choice = 'editorial';
-  if (applicationGallery) applicationGallery.dataset.applicationLayout = choice;
-  applicationButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.applicationChoice === choice)));
-  if (persist) {
-    try { localStorage.setItem('endo-spa-application-layout', choice); } catch { /* Optional preference. */ }
-  }
-}
-let applicationLayout = 'editorial';
-try { applicationLayout = localStorage.getItem('endo-spa-application-layout') || applicationLayout; } catch { /* Use editorial. */ }
-applyApplicationLayout(applicationLayout);
-applicationButtons.forEach(button => button.addEventListener('click', () => applyApplicationLayout(button.dataset.applicationChoice, true)));
+});
