@@ -1540,3 +1540,14 @@ html[data-site-font] .endo-site .local-contact-location h3{margin:0;font-size:24
 .local-studio-photo-gallery .local-method-actions-track img{width:100%;aspect-ratio:3/4;object-fit:contain;background:#e3f2fc}
 .local-studio-photo-gallery .local-method-actions-track a{display:block;border-radius:12px;overflow:hidden}
 .local-studio-photo-gallery .local-method-actions-track a:focus-visible{outline:3px solid #006da9;outline-offset:3px}
+
+.local-studio-photo-gallery{width:calc(100% - 2 * var(--studio-gallery-inset,0px));margin:0 auto}
+.local-studio-photo-gallery .local-method-actions-track>li{flex-basis:calc((100% - 2 * var(--action-gap)) / 3)}
+.local-studio-photo-gallery .local-method-actions-track{scrollbar-width:none;scroll-behavior:smooth}
+.local-studio-photo-gallery .local-method-actions-track::-webkit-scrollbar{display:none}
+@media(max-width:767px){
+ .local-studio-photo-gallery{width:100%}
+ .local-studio-photo-gallery .local-method-actions-track>li{flex-basis:calc((100% - var(--action-gap)) / 2)}
+}
+@media(max-width:480px){.local-studio-photo-gallery .local-method-actions-track>li{flex-basis:100%}}
+@media(prefers-reduced-motion:reduce){.local-studio-photo-gallery .local-method-actions-track{scroll-behavior:auto}}

@@ -265,7 +265,7 @@ async function prepareResults() {
 }
 prepareResults();
 
-document.querySelectorAll('.local-method-actions').forEach(methodActions => {
+document.querySelectorAll('.local-method-actions:not(.local-studio-photo-gallery)').forEach(methodActions => {
 const methodActionsTrack = methodActions?.querySelector('.local-method-actions-track');
 const methodActionsControls = methodActions?.querySelector('.local-method-actions-controls');
 if (methodActionsTrack && methodActionsControls) {
@@ -330,3 +330,62 @@ if (methodActionsTrack && methodActionsControls) {
   updateMethodActionsControls();
 }
 });
+
+// Studio photographs: three full portraits, gently advancing every eight seconds.
+const studioGallery = document.getElementById('studio-gallery');
+if (studioGallery) {
+  const track = studioGallery.querySelector('.local-method-actions-track');
+  const controls = studioGallery.querySelector('.local-method-actions-controls');
+  const pause = controls.querySelector('[data-studio-gallery-pause]');
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let paused = motion.matches;
+  let timer;
+  let visible = false;
+  let hovered = false;
+  let focused = false;
+  function schedule() {
+    clearTimeout(timer);
+    if (!paused && visible && !hovered && !focused && !document.hidden && track.scrollWidth > track.clientWidth + 1) {
+      timer = setTimeout(() => { advance(1); schedule(); }, 8000);
+    }
+  }
+  function advance(direction) {
+    const cards = [...track.children];
+    const step = cards[1].offsetLeft - cards[0].offsetLeft;
+    const limit = track.scrollWidth - track.clientWidth;
+    let target = track.scrollLeft + direction * step;
+    if (direction > 0 && track.scrollLeft >= limit - 2) target = 0;
+    if (direction < 0 && track.scrollLeft <= 2) target = limit;
+    track.scrollTo({ left: Math.max(0, Math.min(limit, target)), behavior: motion.matches ? 'instant' : 'smooth' });
+  }
+  function updatePause() {
+    pause.setAttribute('aria-pressed', String(paused));
+    pause.setAttribute('aria-label', paused ? 'Automatisches Blättern starten' : 'Automatisches Blättern pausieren');
+    pause.querySelector('path').setAttribute('d', paused ? 'M8 5v14l11-7z' : 'M7 5h4v14H7zm6 0h4v14h-4z');
+    schedule();
+  }
+  controls.querySelectorAll('[data-method-action-step]').forEach(button => {
+    button.addEventListener('click', () => { advance(Number(button.dataset.methodActionStep)); schedule(); });
+  });
+  pause.addEventListener('click', () => { paused = !paused; updatePause(); });
+  studioGallery.addEventListener('mouseenter', () => { hovered = true; schedule(); });
+  studioGallery.addEventListener('mouseleave', () => { hovered = false; schedule(); });
+  studioGallery.addEventListener('focusin', () => { focused = true; schedule(); });
+  studioGallery.addEventListener('focusout', event => { focused = studioGallery.contains(event.relatedTarget); schedule(); });
+  track.addEventListener('pointerdown', () => clearTimeout(timer), { passive: true });
+  track.addEventListener('pointerup', schedule, { passive: true });
+  document.addEventListener('visibilitychange', schedule);
+  motion.addEventListener('change', () => { paused = motion.matches; updatePause(); });
+  new IntersectionObserver(entries => { visible = entries[0].isIntersecting; schedule(); }, { threshold: .15 }).observe(studioGallery);
+  const intro = document.querySelector('.local-studio-intro');
+  const photo = intro.querySelector('.local-studio-image');
+  function alignStudioGallery() {
+    const inset = Math.max(0, photo.getBoundingClientRect().left - intro.getBoundingClientRect().left);
+    studioGallery.style.setProperty('--studio-gallery-inset', `${inset}px`);
+    schedule();
+  }
+  new ResizeObserver(alignStudioGallery).observe(intro);
+  controls.hidden = false;
+  updatePause();
+  alignStudioGallery();
+}
