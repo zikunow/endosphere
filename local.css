@@ -1609,3 +1609,8 @@ html.local-offer-open{overflow:hidden}
  .local-trial-offer-close{position:sticky;float:right;top:8px;margin:8px 8px -52px 0}
  .local-trial-offer-copy .local-booking-button{width:100%;box-sizing:border-box}
 }
+
+@media(min-width:701px){
+ .local-trial-offer-copy{margin-left:0;border-top-left-radius:0;border-bottom-left-radius:0}
+ .local-trial-offer-poster img{object-position:right center}
+}
