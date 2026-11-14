@@ -1679,3 +1679,14 @@ html[data-menu-shadow="strong"] .local-header-inner{box-shadow:0 8px 24px #17333
 
 .elementor-134 #behandlung.local-treatment-steps{--padding-bottom:108px}
 @media(max-width:767px){.elementor-134 #behandlung.local-treatment-steps{--padding-bottom:66px}}
+
+.local-legal-page{box-sizing:border-box;width:calc(100% - 48px);max-width:1200px;margin:auto;padding:calc(var(--endo-header-height) + 56px) 0 88px;color:var(--endo-ink,#344b60)}
+.local-legal-page h1{font-size:clamp(34px,4vw,48px);margin:0 0 36px}
+.local-legal-page section{max-width:760px;margin-top:32px}
+.local-legal-page h2{font-size:22px;margin:0 0 16px}
+.local-legal-page p,.local-legal-page address{font-size:16px;line-height:1.8;margin:0 0 18px;font-style:normal}
+.local-legal-page a,.local-legal-footer-links a{color:#007fba;text-underline-offset:4px}
+.local-legal-footer-links{width:calc(100% - 48px);max-width:1200px;margin:24px auto 0;font-size:13px}
+@media(max-width:767px){.local-legal-page{width:calc(100% - 32px);padding-top:calc(var(--endo-header-height) + 36px);padding-bottom:56px}.local-legal-footer-links{width:calc(100% - 32px)}}
+
+.local-privacy-draft{max-width:760px;padding:20px 24px;background:#e3f2fc;border-left:3px solid #007fba;border-radius:6px}.local-privacy-draft p{margin:8px 0 0}.local-legal-footer-links{display:flex;gap:24px;flex-wrap:wrap}.local-privacy-page h1{overflow-wrap:anywhere}
