@@ -1674,3 +1674,8 @@ html[data-menu-shadow="strong"] .local-header-inner{box-shadow:0 8px 24px #17333
 @media(max-width:767px){.local-tech-effects[data-application-layout="cards"]>.local-face-collage-column{margin-top:64px}}
 
 [data-application-layout="cards"] #koerperbehandlung .local-application-media img{height:auto;width:100%;aspect-ratio:606/360}
+
+.local-face-collage-column>#gesichtsbehandlung{flex:1}
+
+.elementor-134 #behandlung.local-treatment-steps{--padding-bottom:108px}
+@media(max-width:767px){.elementor-134 #behandlung.local-treatment-steps{--padding-bottom:66px}}
