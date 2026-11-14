@@ -1,91 +1,5 @@
 'use strict';
 
-// Collages and two circular, automatically advancing comparison sliders.
-const concernGallery = document.getElementById('concern-gallery');
-const concernGalleryButtons = [...document.querySelectorAll('[data-concern-gallery-choice]')];
-const concernGalleryLayouts = ['strip', 'duo', 'editorial', 'wall', 'slider-one', 'slider-two'];
-if (concernGallery) {
-  const grid = concernGallery.querySelector('.local-concern-gallery-grid');
-  const photos = [...grid.querySelectorAll('.local-concern-photo')];
-  const originalParents = photos.map(photo => photo.parentElement);
-  const controls = concernGallery.querySelector('.local-concern-slider-controls');
-  const status = controls.querySelector('.local-concern-slider-status');
-  const pauseButton = controls.querySelector('[data-concern-pause]');
-  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let active = 0;
-  let timer;
-  let layout = 'duo';
-  let paused = motion.matches;
-  let hovered = false;
-  let focused = false;
-  let inView = false;
-  const isSlider = () => layout === 'slider-one' || layout === 'slider-two';
-  function schedule() {
-    clearTimeout(timer);
-    if (!isSlider() || paused || hovered || focused || !inView || document.hidden || photos.length < 2) return;
-    timer = setTimeout(() => advance(1), 5000);
-  }
-  function paint(animate = false) {
-    const count = layout === 'slider-two' ? Math.min(2, photos.length) : 1;
-    const visible = Array.from({ length: count }, (_, offset) => (active + offset) % photos.length);
-    photos.forEach((photo, index) => { photo.hidden = !visible.includes(index); });
-    // Put visible cards in reading order too, including the last-to-first pair.
-    visible.forEach(index => {
-      grid.append(photos[index]);
-      if (animate && !motion.matches) photos[index].animate([{ opacity: .2, transform: 'translateX(12px)' }, { opacity: 1, transform: 'translateX(0)' }], { duration: 320, easing: 'ease-out' });
-    });
-    status.textContent = visible.map(index => index + 1).join(' + ') + ' / ' + photos.length;
-  }
-  function advance(direction) {
-    active = (active + direction + photos.length) % photos.length;
-    paint(true);
-    schedule();
-  }
-  function updatePauseButton() {
-    pauseButton.textContent = paused ? 'Abspielen' : 'Pause';
-    pauseButton.setAttribute('aria-label', paused ? 'Automatische Wiedergabe starten' : 'Automatische Wiedergabe pausieren');
-  }
-  function applyConcernGalleryLayout(choice, persist = false) {
-    if (!concernGalleryLayouts.includes(choice)) choice = 'strip';
-    clearTimeout(timer);
-    layout = choice;
-    concernGallery.dataset.concernGalleryLayout = choice;
-    controls.hidden = !isSlider();
-    concernGalleryButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.concernGalleryChoice === choice)));
-    if (isSlider()) {
-      photos.forEach(photo => grid.append(photo));
-      active = 0;
-      paint();
-    } else if (choice === 'strip') {
-      photos.forEach(photo => {
-        photo.hidden = false;
-        grid.append(photo);
-      });
-    } else {
-      photos.forEach((photo, index) => { photo.hidden = false; originalParents[index].append(photo); });
-    }
-    updatePauseButton();
-    schedule();
-    if (persist) {
-      try { localStorage.setItem('endo-spa-concern-gallery-layout', choice); } catch { /* Optional storage. */ }
-    }
-  }
-  controls.querySelector('[data-concern-previous]').addEventListener('click', () => advance(-1));
-  controls.querySelector('[data-concern-next]').addEventListener('click', () => advance(1));
-  pauseButton.addEventListener('click', () => { paused = !paused; updatePauseButton(); schedule(); });
-  grid.addEventListener('mouseenter', () => { hovered = true; schedule(); });
-  grid.addEventListener('mouseleave', () => { hovered = false; schedule(); });
-  concernGallery.addEventListener('focusin', event => { focused = grid.contains(event.target); schedule(); });
-  concernGallery.addEventListener('focusout', event => { focused = grid.contains(event.relatedTarget); schedule(); });
-  document.addEventListener('visibilitychange', schedule);
-  motion.addEventListener('change', () => { paused = motion.matches; updatePauseButton(); schedule(); });
-  new IntersectionObserver(entries => { inView = entries[0].isIntersecting; schedule(); }, { threshold: .15 }).observe(grid);
-  concernGalleryButtons.forEach(button => button.addEventListener('click', () => applyConcernGalleryLayout(button.dataset.concernGalleryChoice, true)));
-  let savedLayout = 'strip';
-  try { savedLayout = localStorage.getItem('endo-spa-concern-gallery-layout') || savedLayout; } catch { /* Default to the filmstrip. */ }
-  applyConcernGalleryLayout(savedLayout);
-}
-
 // One navigation for desktop and smaller windows.
 const header = document.querySelector('.local-header');
 const menuToggle = document.querySelector('.local-menu-toggle');
@@ -265,7 +179,7 @@ async function prepareResults() {
 }
 prepareResults();
 
-document.querySelectorAll('.local-method-actions:not(.local-studio-photo-gallery)').forEach(methodActions => {
+document.querySelectorAll('.local-method-actions:not(.local-photo-carousel)').forEach(methodActions => {
 const methodActionsTrack = methodActions?.querySelector('.local-method-actions-track');
 const methodActionsControls = methodActions?.querySelector('.local-method-actions-controls');
 if (methodActionsTrack && methodActionsControls) {
@@ -331,10 +245,12 @@ if (methodActionsTrack && methodActionsControls) {
 }
 });
 
-// Studio photographs: three full portraits, gently advancing every eight seconds.
-const studioGallery = document.getElementById('studio-gallery');
-if (studioGallery) {
+// Studio photographs: three full portraits, advancing every three seconds.
+document.querySelectorAll('.local-photo-carousel').forEach(studioGallery => {
+  const slideDelay = 3000;
+  const slidesPerAdvance = studioGallery.classList.contains('local-results-photo-gallery') ? 3 : 1;
   const track = studioGallery.querySelector('.local-method-actions-track');
+  if (!track?.children.length) return;
   const controls = studioGallery.querySelector('.local-method-actions-controls');
   const pause = controls.querySelector('[data-studio-gallery-pause]');
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -346,12 +262,13 @@ if (studioGallery) {
   function schedule() {
     clearTimeout(timer);
     if (!paused && visible && !hovered && !focused && !document.hidden && track.scrollWidth > track.clientWidth + 1) {
-      timer = setTimeout(() => { advance(1); schedule(); }, 8000);
+      timer = setTimeout(() => { advance(1); schedule(); }, slideDelay);
     }
   }
   function advance(direction) {
     const cards = [...track.children];
-    const step = cards[1].offsetLeft - cards[0].offsetLeft;
+    if (cards.length < 2) return;
+    const step = (cards[1].offsetLeft - cards[0].offsetLeft) * slidesPerAdvance;
     const limit = track.scrollWidth - track.clientWidth;
     let target = track.scrollLeft + direction * step;
     if (direction > 0 && track.scrollLeft >= limit - 2) target = 0;
@@ -377,18 +294,20 @@ if (studioGallery) {
   document.addEventListener('visibilitychange', schedule);
   motion.addEventListener('change', () => { paused = motion.matches; updatePause(); });
   new IntersectionObserver(entries => { visible = entries[0].isIntersecting; schedule(); }, { threshold: .15 }).observe(studioGallery);
-  const intro = document.querySelector('.local-studio-intro');
-  const photo = intro.querySelector('.local-studio-image');
+  const intro = studioGallery.classList.contains('local-studio-photo-gallery') ? document.querySelector('.local-studio-intro') : null;
+  const photo = intro?.querySelector('.local-studio-image');
   function alignStudioGallery() {
-    const inset = Math.max(0, photo.getBoundingClientRect().left - intro.getBoundingClientRect().left);
-    studioGallery.style.setProperty('--studio-gallery-inset', `${inset}px`);
+    if (intro && photo) {
+      const inset = Math.max(0, photo.getBoundingClientRect().left - intro.getBoundingClientRect().left);
+      studioGallery.style.setProperty('--studio-gallery-inset', `${inset}px`);
+    }
     schedule();
   }
-  new ResizeObserver(alignStudioGallery).observe(intro);
+  new ResizeObserver(alignStudioGallery).observe(intro || studioGallery);
   controls.hidden = false;
   updatePause();
   alignStudioGallery();
-}
+});
 
 // Independent exit-intent and ten-second triggers; the first show cancels both.
 const trialOffer = document.getElementById('trial-offer');
@@ -436,4 +355,75 @@ if (trialOffer) {
     document.addEventListener('visibilitychange', onOfferVisibility);
     document.addEventListener('mouseout', onOfferExit);
   }
+}
+
+// Local-only menu palette picker; keep the chosen color across preview reloads.
+if (['localhost', '127.0.0.1'].includes(location.hostname)) {
+  const palette = document.createElement('div');
+  palette.className = 'local-menu-color-preview';
+  palette.setAttribute('role', 'group');
+  palette.setAttribute('aria-label', 'Menüfarbe vergleichen');
+  const label = document.createElement('span');
+  label.textContent = 'Menü';
+  palette.append(label);
+  const choices = [['ice', 'Eisblau', '#e3f2fc'], ['sky', 'Himmelblau', '#d5edfa'], ['water', 'Wasserblau', '#c6e5f5'], ['white', 'Wei\u00df', '#ffffff']];
+  function selectMenuColor(value) {
+    if (!choices.some(([key]) => key === value)) value = 'ice';
+    document.documentElement.dataset.menuColor = value;
+    palette.querySelectorAll('[data-menu-color]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.menuColor === value)));
+  }
+  choices.forEach(([value, name, color]) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.dataset.menuColor = value;
+    button.style.setProperty('--swatch', color);
+    button.textContent = name;
+    button.addEventListener('click', () => {
+      selectMenuColor(value);
+      try { localStorage.setItem('endo-spa-menu-color', value); } catch { /* Optional preference. */ }
+    });
+    palette.append(button);
+  });
+  let saved = 'ice';
+  try { saved = localStorage.getItem('endo-spa-menu-color') || saved; } catch { /* Default ice blue. */ }
+  selectMenuColor(saved);
+
+  const shadowButton = document.createElement('button');
+  shadowButton.type = 'button';
+  shadowButton.className = 'local-menu-shadow-toggle';
+  shadowButton.textContent = 'Mehr Schatten';
+  shadowButton.style.setProperty('--swatch', '#f3f8fc');
+  function selectMenuShadow(stronger) {
+    document.documentElement.dataset.menuShadow = stronger ? 'strong' : 'soft';
+    shadowButton.setAttribute('aria-pressed', String(stronger));
+  }
+  let strongerShadow = false;
+  try { strongerShadow = localStorage.getItem('endo-spa-menu-shadow') === 'strong'; } catch { /* Default soft shadow. */ }
+  selectMenuShadow(strongerShadow);
+  shadowButton.addEventListener('click', () => {
+    const stronger = shadowButton.getAttribute('aria-pressed') !== 'true';
+    selectMenuShadow(stronger);
+    try { localStorage.setItem('endo-spa-menu-shadow', stronger ? 'strong' : 'soft'); } catch { /* Optional preference. */ }
+  });
+  palette.append(shadowButton);
+  document.body.append(palette);
+}
+
+const faceCollage = document.querySelector('#gesichtsbehandlung .local-application-media');
+if (faceCollage) {
+  const image = faceCollage.querySelector('img');
+  const buttons = [...document.querySelectorAll('[data-face-collage]')];
+  const originalSource = image.getAttribute('src').replace('endospheres-face-trio-2.gif', 'endospheres-face-trio.gif');
+  function selectFaceCollage(value) {
+    if (!['1', '2'].includes(value)) value = '2';
+    image.src = value === '1' ? originalSource : originalSource.replace('endospheres-face-trio.gif', 'endospheres-face-trio-2.gif');
+    buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.faceCollage === value)));
+  }
+  let saved = '2';
+  try { saved = localStorage.getItem('endo-spa-face-collage') || saved; } catch { /* Default new collage. */ }
+  selectFaceCollage(saved);
+  buttons.forEach(button => button.addEventListener('click', () => {
+    selectFaceCollage(button.dataset.faceCollage);
+    try { localStorage.setItem('endo-spa-face-collage', button.dataset.faceCollage); } catch { /* Optional preference. */ }
+  }));
 }
