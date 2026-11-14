@@ -389,3 +389,51 @@ if (studioGallery) {
   updatePause();
   alignStudioGallery();
 }
+
+// Independent exit-intent and ten-second triggers; the first show cancels both.
+const trialOffer = document.getElementById('trial-offer');
+if (trialOffer) {
+  const seenKey = 'endo-spa-trial-offer-seen-v1';
+  const started = Date.now();
+  let shown = false;
+  let offerTimer;
+  let previousFocus;
+  try { shown = sessionStorage.getItem(seenKey) === '1'; } catch { /* In-memory once-only fallback. */ }
+  function showTrialOffer() {
+    if (shown || document.hidden || document.querySelector('dialog[open]')) return;
+    shown = true;
+    clearTimeout(offerTimer);
+    document.removeEventListener('mouseout', onOfferExit);
+    document.removeEventListener('visibilitychange', onOfferVisibility);
+    try { sessionStorage.setItem(seenKey, '1'); } catch { /* Optional storage. */ }
+    previousFocus = document.activeElement;
+    trialOffer.showModal();
+    document.documentElement.classList.add('local-offer-open');
+  }
+  function onOfferExit(event) {
+    if (!event.relatedTarget && event.clientY <= 0 && Date.now() - started >= 1500) showTrialOffer();
+  }
+  function onOfferVisibility() {
+    if (!document.hidden && Date.now() - started >= 10000) showTrialOffer();
+  }
+  trialOffer.querySelector('.local-trial-offer-close').addEventListener('click', () => trialOffer.close());
+  trialOffer.addEventListener('click', event => {
+    if (event.target !== trialOffer) return;
+    const rect = trialOffer.getBoundingClientRect();
+    if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) trialOffer.close();
+  });
+  trialOffer.addEventListener('close', () => {
+    document.documentElement.classList.remove('local-offer-open');
+    if (previousFocus?.isConnected) previousFocus.focus({ preventScroll: true });
+  });
+  trialOffer.querySelector('.local-booking-button').addEventListener('click', () => trialOffer.close());
+  const localOfferPreview = ['localhost', '127.0.0.1'].includes(location.hostname) && new URLSearchParams(location.search).get('preview') === 'trial-offer';
+  if (localOfferPreview) {
+    shown = false;
+    showTrialOffer();
+  } else if (!shown) {
+    offerTimer = setTimeout(showTrialOffer, 10000);
+    document.addEventListener('visibilitychange', onOfferVisibility);
+    document.addEventListener('mouseout', onOfferExit);
+  }
+}

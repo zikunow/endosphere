@@ -1577,3 +1577,35 @@ html[data-site-font] .endo-site .local-contact-location h3{margin:0;font-size:24
  .local-studio-location>.local-text-link,
  .endo-site #vorstellung .local-studio-location>.local-studio-treatment-button{position:relative;top:-14px}
 }
+
+/* Equal spacing around the studio address, independent of button height. */
+.local-studio-location>p{margin:8px 0!important}
+.local-studio-location>.local-text-link{position:static;top:auto}
+.endo-site #vorstellung .local-studio-location>.local-studio-treatment-button{grid-row:1 / span 3;align-self:end;position:static;top:auto}
+@media(max-width:767px){.endo-site #vorstellung .local-studio-location>.local-studio-treatment-button{grid-row:4}}
+
+/* Complimentary trial offer, shown once per browsing session. */
+.local-trial-offer{position:fixed;inset:0;margin:auto;width:min(960px,calc(100vw - 48px));max-width:none;max-height:calc(100svh - 40px);padding:0;border:0;background:transparent;color:#344b60;overflow:auto;overscroll-behavior:contain}
+.local-trial-offer::backdrop{background:rgba(24,53,65,.65);backdrop-filter:blur(3px)}
+.local-trial-offer-layout{display:grid;grid-template-columns:54% 46%;align-items:center;padding:12px 0}
+.local-trial-offer-poster{min-width:0}
+.local-trial-offer-poster img{display:block;width:100%;height:auto;max-height:calc(100svh - 64px);object-fit:contain}
+.local-trial-offer-copy{position:relative;margin-left:-30px;padding:32px;background:#e3f2fc;border:1px solid #c7dfef;box-shadow:0 14px 48px #122d3d40;border-radius:12px;text-align:center}
+.local-trial-offer h2{font-family:Montserrat,Arial,sans-serif;font-size:clamp(25px,3vw,36px);line-height:1.2;color:#344b60;margin:0 0 20px}
+.local-trial-offer-copy p{font-family:Montserrat,Arial,sans-serif;font-size:15px;line-height:1.75;margin:0 0 16px}
+.local-trial-offer-copy .local-booking-button{display:inline-flex;justify-content:center;align-items:center;gap:8px;margin-top:6px;background:#007fba;border:2px solid #007fba;color:#fff;font-family:Montserrat,Arial,sans-serif;font-size:14px;line-height:1.5;border-radius:6px;padding:13px 18px;text-decoration:none}
+.local-trial-offer-copy .local-booking-button:hover{background:#005987;border-color:#005987;color:#fff}
+.local-trial-offer-close{position:absolute;top:12px;right:0;z-index:2;width:44px;height:44px;display:grid;place-items:center;border:1px solid #c7dfef;border-radius:50%;padding:10px;background:#fff;color:#344b60;cursor:pointer;box-shadow:0 4px 16px #122d3d26}
+.local-trial-offer-close svg{width:24px;height:24px}
+.local-trial-offer :is(button,a):focus-visible{outline:3px solid #007fba;outline-offset:3px}
+html.local-offer-open{overflow:hidden}
+@media(max-width:700px){
+ .local-trial-offer{width:min(460px,calc(100vw - 24px));max-height:calc(100svh - 24px)}
+ .local-trial-offer-layout{grid-template-columns:minmax(0,1fr);padding:0 0 4px}
+ .local-trial-offer-poster img{max-height:none}
+ .local-trial-offer-copy{margin:-30px 10px 0;padding:24px 20px}
+ .local-trial-offer-copy p{font-size:14px;line-height:1.65}
+ .local-trial-offer h2{font-size:28px;margin-bottom:16px}
+ .local-trial-offer-close{position:sticky;float:right;top:8px;margin:8px 8px -52px 0}
+ .local-trial-offer-copy .local-booking-button{width:100%;box-sizing:border-box}
+}
