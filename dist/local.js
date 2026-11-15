@@ -245,7 +245,7 @@ if (methodActionsTrack && methodActionsControls) {
 }
 });
 
-// Studio photographs: three full portraits, advancing every three seconds.
+// Photo and video galleries: pause automatic browsing during video playback.
 document.querySelectorAll('.local-photo-carousel').forEach(studioGallery => {
   const slideDelay = 3000;
   const slidesPerAdvance = studioGallery.classList.contains('local-results-photo-gallery') ? 3 : 1;
@@ -261,7 +261,7 @@ document.querySelectorAll('.local-photo-carousel').forEach(studioGallery => {
   let focused = false;
   function schedule() {
     clearTimeout(timer);
-    if (!paused && visible && !hovered && !focused && !document.hidden && track.scrollWidth > track.clientWidth + 1) {
+    if (!paused && visible && !hovered && !focused && !document.hidden && ![...track.querySelectorAll('video')].some(video => !video.paused && !video.ended) && track.scrollWidth > track.clientWidth + 1) {
       timer = setTimeout(() => { advance(1); schedule(); }, slideDelay);
     }
   }
@@ -291,7 +291,23 @@ document.querySelectorAll('.local-photo-carousel').forEach(studioGallery => {
   studioGallery.addEventListener('focusout', event => { focused = studioGallery.contains(event.relatedTarget); schedule(); });
   track.addEventListener('pointerdown', () => clearTimeout(timer), { passive: true });
   track.addEventListener('pointerup', schedule, { passive: true });
-  document.addEventListener('visibilitychange', schedule);
+  const galleryVideos = [...track.querySelectorAll('video')];
+  const videoVisibility = new IntersectionObserver(entries => {
+    entries.forEach(entry => { if (entry.intersectionRatio < .5) entry.target.pause(); });
+  }, { root: track, threshold: .5 });
+  galleryVideos.forEach(video => {
+    videoVisibility.observe(video);
+    video.addEventListener('play', () => {
+      galleryVideos.forEach(other => { if (other !== video) other.pause(); });
+      schedule();
+    });
+    video.addEventListener('pause', schedule);
+    video.addEventListener('ended', schedule);
+  });
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) galleryVideos.forEach(video => video.pause());
+    schedule();
+  });
   motion.addEventListener('change', () => { paused = motion.matches; updatePause(); });
   new IntersectionObserver(entries => { visible = entries[0].isIntersecting; schedule(); }, { threshold: .15 }).observe(studioGallery);
   const intro = studioGallery.classList.contains('local-studio-photo-gallery') ? document.querySelector('.local-studio-intro') : null;
@@ -487,3 +503,21 @@ document.querySelectorAll('[data-gif-slides]').forEach(carousel => {
     selectSlide(active + (event.key === 'ArrowRight' ? 1 : -1));
   });
 });
+
+// Compare white and blue gift-section backgrounds and remember the choice.
+const giftSection = document.getElementById('gutschein');
+if (giftSection) {
+  const backgroundButtons = [...giftSection.querySelectorAll('[data-gift-background]')];
+  function selectGiftBackground(value) {
+    value = value === 'white' ? 'white' : 'blue';
+    giftSection.dataset.giftBackground = value;
+    backgroundButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.giftBackground === value)));
+  }
+  let savedBackground = 'blue';
+  try { savedBackground = localStorage.getItem('endo-spa-gift-background') || savedBackground; } catch { /* Optional preference. */ }
+  selectGiftBackground(savedBackground);
+  backgroundButtons.forEach(button => button.addEventListener('click', () => {
+    selectGiftBackground(button.dataset.giftBackground);
+    try { localStorage.setItem('endo-spa-gift-background', button.dataset.giftBackground); } catch { /* Optional preference. */ }
+  }));
+}

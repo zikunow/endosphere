@@ -991,7 +991,7 @@ html[data-site-font] .endo-site .local-concerns-cta h3{margin:0;font-size:clamp(
 
 /* Contact page */
 .local-contact-page-hero{
-  background:#e4eff0;
+  background:#f2f2f2;
   padding:calc(var(--endo-header-height) + 62px) 24px 68px;
   text-align:center;
 }
@@ -1014,7 +1014,7 @@ html[data-site-font] .endo-site .local-concerns-cta h3{margin:0;font-size:clamp(
 .local-contact-visit dt{font-weight:600;color:#344b60;margin-bottom:4px}
 .local-contact-visit dd{margin:0 0 16px;font-size:14px;line-height:1.65;overflow-wrap:anywhere}
 .local-contact-visit a{color:#365e68;text-underline-offset:3px}
-.local-contact-form-panel{min-width:0;padding:clamp(22px,4vw,44px);background:#f0f7f7;border-radius:8px}
+.local-contact-form-panel{min-width:0;padding:clamp(22px,4vw,44px);background:#e3f2fc;border-radius:8px}
 .local-contact-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 .local-contact-form label{display:block;min-width:0;font-size:13px;font-weight:600}
 .local-contact-form label span{color:#9b3c32}
@@ -1049,13 +1049,13 @@ html[data-site-font] .endo-site .local-concerns-cta h3{margin:0;font-size:clamp(
   cursor:pointer;
 }
 .local-contact-page :is(.local-contact-form button,.local-contact-map-actions button):hover{background:#345862;border-color:#345862;color:#fff}
-.local-contact-page-map{--endo-heading-color:#fff;background:#426b75;color:#fff;text-align:center;padding:44px 24px}
+.local-contact-page-map{--endo-heading-color:#344b60;background:#f2f2f2;color:#344b60;text-align:center;padding:44px 24px}
 .local-contact-page-map h2,.local-contact-page-map p{margin:0 0 12px}
 .local-contact-map-actions{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:14px}
 .local-contact-page-map .local-contact-map-actions button{background:#e0eeef;color:#234a54;border-color:#e0eeef}
 .local-contact-page-map .local-contact-map-actions button:hover{background:#cce3e6;color:#234a54;border-color:#cce3e6}
-.local-contact-map-actions a{color:#fff;font-size:13px;text-underline-offset:4px}
-.local-contact-map-actions :focus-visible{outline-color:#fff}
+.local-contact-map-actions a{color:#344b60;font-size:13px;text-underline-offset:4px}
+.local-contact-map-actions :focus-visible{outline-color:#007fba}
 .local-contact-page-map iframe{display:block;width:min(100%,1200px);height:340px;margin:24px auto 0;border:0;border-radius:6px;background:#e4eff0}
 .local-contact-footer .local-footer-inner{grid-template-columns:1.25fr .8fr .85fr 1.1fr}
 html[data-site-font] .endo-site .local-contact-footer h2{font-size:17px!important;margin:0 0 10px}
@@ -1775,9 +1775,36 @@ html[data-site-font] .endo-site #method-actions-track h4{margin-top:6px}
 .local-footer .local-footer-navigation{display:flex;flex-direction:column;align-items:stretch;gap:24px}
 .local-footer-menu-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 28px}
 .local-footer-menu-grid a{min-width:0;line-height:1.6}
-.local-footer-socials{display:flex;align-items:center;gap:12px}
-.local-footer-socials .local-footer-social-link{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;box-sizing:border-box;border:1px solid #b7d0df;border-radius:50%;color:#365e68;background:#fff;text-decoration:none;transition:background .2s ease,color .2s ease}
-.local-footer-social-link svg{width:18px;height:18px}
-.local-footer-socials .local-footer-social-link:hover{background:#007fba;color:#fff;border-color:#007fba}
+.local-footer-socials{display:flex;align-items:center;gap:8px;margin-top:16px}
+.local-footer-socials .local-footer-social-link{display:inline-flex;align-items:center;justify-content:center;width:32px;height:30px;box-sizing:border-box;border:0;border-radius:3px;color:#365e68;background:#e0eeef;text-decoration:none;transition:background .2s ease,color .2s ease}
+.local-footer-social-link svg{width:16px;height:16px}
+.local-footer-socials .local-footer-social-link:hover{background:#cee4e7;color:#234a54}
 @media(min-width:1101px){.local-footer:not(.local-contact-footer) .local-footer-inner{grid-template-columns:1.2fr 1.4fr 1fr;gap:32px 48px}}
 @media(max-width:480px){.local-footer-menu-grid{gap:12px 16px}}
+
+/* Gift voucher: supplied artwork beside the client copy, immediately after prices. */
+.local-gift-section{background:#e3f2fc}
+.local-gift-inner{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:56px;align-items:center}
+.local-gift-image{margin:0;min-width:0}
+.local-gift-image img{display:block;width:100%;height:auto;max-height:620px;object-fit:contain}
+.local-gift-inner>.local-gift-copy{max-width:none;min-width:0}
+.local-gift-copy h2{margin:20px 0 32px;line-height:1.25}
+.local-gift-copy p{margin:0 0 12px}
+.local-gift-copy .local-booking-button{margin-top:24px}
+@media(max-width:767px){
+ .local-gift-inner{grid-template-columns:minmax(0,1fr);gap:32px}
+ .local-gift-image{width:min(100%,380px);justify-self:center}
+ .local-gift-copy h2{margin:16px 0 24px}
+}
+
+.local-gift-section[data-gift-background="white"]{background:#fff}
+.local-gift-background-switcher{display:flex;gap:8px;margin-bottom:24px}
+.local-gift-background-switcher button{font:500 12px/1.5 Montserrat,Arial,sans-serif;padding:8px 16px;border:1px solid #9cc5dd;border-radius:6px;background:#fff;color:#344b60;cursor:pointer}
+.local-gift-background-switcher button[aria-pressed="true"]{background:#007fba;border-color:#007fba;color:#fff}
+
+.local-contact-page .local-contact-form button{background:#007fba;border-color:#007fba;color:#fff}
+.local-contact-page .local-contact-form button:is(:hover,:focus-visible){background:#005987;border-color:#005987;color:#fff}
+.endo-site .local-contact-page .local-contact-form :is(input,select,textarea):focus-visible{outline-color:#007fba}
+
+/* Studio photos and videos share one frame; videos load on demand. */
+.local-studio-photo-gallery .local-studio-gallery-video{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:contain;border-radius:12px;background:#e3f2fc}
