@@ -4,7 +4,7 @@
 const header = document.querySelector('.local-header');
 const menuToggle = document.querySelector('.local-menu-toggle');
 const navigation = document.getElementById('site-navigation');
-const compactNavigation = window.matchMedia('(max-width: 1100px)');
+const compactNavigation = window.matchMedia('(max-width: 1250px)');
 function setMenu(open) {
   menuToggle.setAttribute('aria-expanded', String(open));
   navigation.classList.toggle('is-open', open);
@@ -345,7 +345,7 @@ if (trialOffer) {
     document.documentElement.classList.remove('local-offer-open');
     if (previousFocus?.isConnected) previousFocus.focus({ preventScroll: true });
   });
-  trialOffer.querySelector('.local-booking-button').addEventListener('click', () => trialOffer.close());
+  trialOffer.querySelector('.local-trial-offer-link').addEventListener('click', () => trialOffer.close());
   const localOfferPreview = ['localhost', '127.0.0.1'].includes(location.hostname) && new URLSearchParams(location.search).get('preview') === 'trial-offer';
   if (localOfferPreview) {
     shown = false;
@@ -409,21 +409,81 @@ if (['localhost', '127.0.0.1'].includes(location.hostname)) {
   document.body.append(palette);
 }
 
-const faceCollage = document.querySelector('#gesichtsbehandlung .local-application-media');
-if (faceCollage) {
-  const image = faceCollage.querySelector('img');
-  const buttons = [...document.querySelectorAll('[data-face-collage]')];
-  const originalSource = image.getAttribute('src').replace('endospheres-face-trio-2.gif', 'endospheres-face-trio.gif');
-  function selectFaceCollage(value) {
-    if (!['1', '2'].includes(value)) value = '2';
-    image.src = value === '1' ? originalSource : originalSource.replace('endospheres-face-trio.gif', 'endospheres-face-trio-2.gif');
-    buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.faceCollage === value)));
+// Start the treatment video directly from either preview link.
+const treatmentVideo = document.getElementById('behandlung-video');
+if (treatmentVideo) {
+  document.querySelectorAll('[data-play-treatment-video]').forEach(link => {
+    link.addEventListener('click', event => {
+      if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      if (location.hash !== '#behandlung-video') history.pushState(null, '', '#behandlung-video');
+      treatmentVideo.scrollIntoView({ block: 'start', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+      treatmentVideo.focus({ preventScroll: true });
+      treatmentVideo.play().catch(() => { /* Native controls remain available if playback is blocked. */ });
+    });
+  });
+}
+
+// Enlarge the supplied certificate without leaving the studio section.
+const certificateLink = document.querySelector('.local-studio-certificate');
+const certificateDialog = document.getElementById('certificate-dialog');
+if (certificateLink && certificateDialog) {
+  certificateLink.addEventListener('click', event => {
+    if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    certificateDialog.showModal();
+    document.documentElement.classList.add('local-certificate-open');
+  });
+  certificateDialog.querySelector('.local-certificate-close').addEventListener('click', () => certificateDialog.close());
+  certificateDialog.addEventListener('click', event => {
+    if (event.target !== certificateDialog) return;
+    const rect = certificateDialog.getBoundingClientRect();
+    if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) certificateDialog.close();
+  });
+  certificateDialog.addEventListener('close', () => {
+    document.documentElement.classList.remove('local-certificate-open');
+    certificateLink.focus({ preventScroll: true });
+  });
+}
+
+// Remember the selected certificate composition in this browser.
+const certificateVisual = document.querySelector('.local-studio-visual');
+if (certificateVisual) {
+  const styleButtons = [...certificateVisual.querySelectorAll('button[data-certificate-style]')];
+  const allowedStyles = styleButtons.map(button => button.dataset.certificateStyle);
+  function selectCertificateStyle(style) {
+    if (style === 'gallery') style = 'classic';
+    if (!allowedStyles.includes(style)) style = 'contour';
+    certificateVisual.dataset.certificateStyle = style;
+    styleButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.certificateStyle === style)));
   }
-  let saved = '2';
-  try { saved = localStorage.getItem('endo-spa-face-collage') || saved; } catch { /* Default new collage. */ }
-  selectFaceCollage(saved);
-  buttons.forEach(button => button.addEventListener('click', () => {
-    selectFaceCollage(button.dataset.faceCollage);
-    try { localStorage.setItem('endo-spa-face-collage', button.dataset.faceCollage); } catch { /* Optional preference. */ }
+  let savedStyle = 'contour';
+  try { savedStyle = localStorage.getItem('endo-spa-certificate-style') || savedStyle; } catch { /* Optional preference. */ }
+  selectCertificateStyle(savedStyle);
+  styleButtons.forEach(button => button.addEventListener('click', () => {
+    selectCertificateStyle(button.dataset.certificateStyle);
+    try { localStorage.setItem('endo-spa-certificate-style', button.dataset.certificateStyle); } catch { /* Optional preference. */ }
   }));
 }
+
+// One animated treatment clip at a time; the visitor chooses when to advance.
+document.querySelectorAll('[data-gif-slides]').forEach(carousel => {
+  const slides = JSON.parse(carousel.dataset.gifSlides);
+  const image = carousel.querySelector('img');
+  const status = carousel.querySelector('.local-application-status');
+  let active = 0;
+  function selectSlide(index) {
+    active = (index + slides.length) % slides.length;
+    image.src = slides[active].src;
+    image.alt = slides[active].alt;
+    status.textContent = `${active + 1} / ${slides.length}`;
+  }
+  carousel.querySelectorAll('[data-gif-step]').forEach(button => {
+    button.addEventListener('click', () => selectSlide(active + Number(button.dataset.gifStep)));
+  });
+  carousel.addEventListener('keydown', event => {
+    if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+    event.preventDefault();
+    selectSlide(active + (event.key === 'ArrowRight' ? 1 : -1));
+  });
+});
