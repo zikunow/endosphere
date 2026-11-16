@@ -462,26 +462,6 @@ if (certificateLink && certificateDialog) {
   });
 }
 
-// Remember the selected certificate composition in this browser.
-const certificateVisual = document.querySelector('.local-studio-visual');
-if (certificateVisual) {
-  const styleButtons = [...certificateVisual.querySelectorAll('button[data-certificate-style]')];
-  const allowedStyles = styleButtons.map(button => button.dataset.certificateStyle);
-  function selectCertificateStyle(style) {
-    if (style === 'gallery') style = 'classic';
-    if (!allowedStyles.includes(style)) style = 'contour';
-    certificateVisual.dataset.certificateStyle = style;
-    styleButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.certificateStyle === style)));
-  }
-  let savedStyle = 'contour';
-  try { savedStyle = localStorage.getItem('endo-spa-certificate-style') || savedStyle; } catch { /* Optional preference. */ }
-  selectCertificateStyle(savedStyle);
-  styleButtons.forEach(button => button.addEventListener('click', () => {
-    selectCertificateStyle(button.dataset.certificateStyle);
-    try { localStorage.setItem('endo-spa-certificate-style', button.dataset.certificateStyle); } catch { /* Optional preference. */ }
-  }));
-}
-
 // One animated treatment clip at a time; the visitor chooses when to advance.
 document.querySelectorAll('[data-gif-slides]').forEach(carousel => {
   const slides = JSON.parse(carousel.dataset.gifSlides);
@@ -503,21 +483,3 @@ document.querySelectorAll('[data-gif-slides]').forEach(carousel => {
     selectSlide(active + (event.key === 'ArrowRight' ? 1 : -1));
   });
 });
-
-// Compare white and blue gift-section backgrounds and remember the choice.
-const giftSection = document.getElementById('gutschein');
-if (giftSection) {
-  const backgroundButtons = [...giftSection.querySelectorAll('[data-gift-background]')];
-  function selectGiftBackground(value) {
-    value = value === 'white' ? 'white' : 'blue';
-    giftSection.dataset.giftBackground = value;
-    backgroundButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.giftBackground === value)));
-  }
-  let savedBackground = 'blue';
-  try { savedBackground = localStorage.getItem('endo-spa-gift-background') || savedBackground; } catch { /* Optional preference. */ }
-  selectGiftBackground(savedBackground);
-  backgroundButtons.forEach(button => button.addEventListener('click', () => {
-    selectGiftBackground(button.dataset.giftBackground);
-    try { localStorage.setItem('endo-spa-gift-background', button.dataset.giftBackground); } catch { /* Optional preference. */ }
-  }));
-}
