@@ -373,58 +373,6 @@ if (trialOffer) {
   }
 }
 
-// Local-only menu palette picker; keep the chosen color across preview reloads.
-if (['localhost', '127.0.0.1'].includes(location.hostname)) {
-  const palette = document.createElement('div');
-  palette.className = 'local-menu-color-preview';
-  palette.setAttribute('role', 'group');
-  palette.setAttribute('aria-label', 'Menüfarbe vergleichen');
-  const label = document.createElement('span');
-  label.textContent = 'Menü';
-  palette.append(label);
-  const choices = [['ice', 'Eisblau', '#e3f2fc'], ['sky', 'Himmelblau', '#d5edfa'], ['water', 'Wasserblau', '#c6e5f5'], ['white', 'Wei\u00df', '#ffffff']];
-  function selectMenuColor(value) {
-    if (!choices.some(([key]) => key === value)) value = 'ice';
-    document.documentElement.dataset.menuColor = value;
-    palette.querySelectorAll('[data-menu-color]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.menuColor === value)));
-  }
-  choices.forEach(([value, name, color]) => {
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.dataset.menuColor = value;
-    button.style.setProperty('--swatch', color);
-    button.textContent = name;
-    button.addEventListener('click', () => {
-      selectMenuColor(value);
-      try { localStorage.setItem('endo-spa-menu-color', value); } catch { /* Optional preference. */ }
-    });
-    palette.append(button);
-  });
-  let saved = 'ice';
-  try { saved = localStorage.getItem('endo-spa-menu-color') || saved; } catch { /* Default ice blue. */ }
-  selectMenuColor(saved);
-
-  const shadowButton = document.createElement('button');
-  shadowButton.type = 'button';
-  shadowButton.className = 'local-menu-shadow-toggle';
-  shadowButton.textContent = 'Mehr Schatten';
-  shadowButton.style.setProperty('--swatch', '#f3f8fc');
-  function selectMenuShadow(stronger) {
-    document.documentElement.dataset.menuShadow = stronger ? 'strong' : 'soft';
-    shadowButton.setAttribute('aria-pressed', String(stronger));
-  }
-  let strongerShadow = false;
-  try { strongerShadow = localStorage.getItem('endo-spa-menu-shadow') === 'strong'; } catch { /* Default soft shadow. */ }
-  selectMenuShadow(strongerShadow);
-  shadowButton.addEventListener('click', () => {
-    const stronger = shadowButton.getAttribute('aria-pressed') !== 'true';
-    selectMenuShadow(stronger);
-    try { localStorage.setItem('endo-spa-menu-shadow', stronger ? 'strong' : 'soft'); } catch { /* Optional preference. */ }
-  });
-  palette.append(shadowButton);
-  document.body.append(palette);
-}
-
 // Start the treatment video directly from either preview link.
 const treatmentVideo = document.getElementById('behandlung-video');
 if (treatmentVideo) {
