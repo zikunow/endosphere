@@ -1803,3 +1803,20 @@ html[data-site-font] .endo-site #method-actions-track h4{margin-top:6px}
 
 .local-studio-certificate{border-radius:12px;overflow:hidden}
 .local-studio-image .local-studio-certificate img{border-radius:5px}
+
+/* Center the remaining contact card after removing the visit card. */
+.local-contact-compact .local-contact-intro{text-align:center;justify-self:center;width:100%}
+.local-contact-compact .local-contact-intro h2{margin-inline:auto}
+.local-contact-compact .local-contact-copy.local-contact-card{grid-column:1/-1;justify-self:center;align-items:center;width:100%;max-width:640px;box-sizing:border-box}
+.local-contact-compact .local-contact-copy h3{text-align:center}
+.local-contact-compact .local-contact-copy .local-booking-button{align-self:center}
+
+.local-contact-compact .local-contact-channels{width:auto;max-width:100%;align-self:center}
+.local-contact-compact .local-contact-channels>div{grid-template-columns:90px minmax(0,auto);gap:20px;padding:10px 0;border:0}
+.local-contact-compact .local-contact-channels dt{text-align:right}
+.local-contact-compact .local-contact-channels dd{text-align:left}
+@media(max-width:380px){.local-contact-compact .local-contact-channels>div{grid-template-columns:70px minmax(0,1fr);gap:12px}}
+
+.local-contact-compact .local-contact-channels-centered{width:100%;text-align:center;margin:0 0 24px}
+.local-contact-compact .local-contact-channels-centered p{display:block;margin:0;padding:10px 0;border:0;text-align:center;font-size:15px;line-height:1.7;color:#536c79}
+.local-contact-compact .local-contact-channels-centered a{margin-left:6px;color:#006da9;overflow-wrap:anywhere}
